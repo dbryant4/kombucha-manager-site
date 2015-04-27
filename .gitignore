@@ -1,3 +1,5 @@
 venv
 .vagrant
 vagrant_project
+*.pyc
+staticfiles
