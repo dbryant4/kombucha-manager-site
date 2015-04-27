@@ -1,0 +1,8 @@
+WSGIScriptAlias / /tmp/{{ django_project_name }}/{{ django_project_name}}/wsgi.py
+WSGIPythonPath /tmp/{{ django_project_name }}:{{ virtualenv_path }}/lib/python2.7/site-packages
+
+<Directory /tmp/{{ django_project_name }}/{{ django_project_name }}>
+<Files wsgi.py>
+Require all granted
+</Files>
+</Directory>

@@ -5,13 +5,17 @@
 
   vars:
     virtualenv_path: "/tmp/venv"
-    django_project_name: "mysite"
+    django_project_name: "mytestingsite"
 
   tasks:
     - name: install epel
       yum: "name=http://mirror.steadfast.net/epel/7/x86_64/e/epel-release-7-5.noarch.rpm state=present"
 
-    - yum: name=python-pip state=present
+    - yum: "name={{ item }} state=present"
+      with_items:
+        - python-pip
+        - httpd
+        - mod_wsgi
 
     - name: install virtual env
       pip: name=virtualenv state=present
@@ -25,19 +29,30 @@
     - name: Create django project directory
       file: "path=/tmp/{{ django_project_name }} state=directory"
 
-    - name:
+    - name: Create django project
+      shell: "source {{ virtualenv_path }}/bin/activate && django-admin startproject {{ django_project_name }} /tmp/{{ django_project_name }} creates=/tmp/{{ django_project_name }}/{{ django_project_name }}"
+
+    - name: Copy settings.py
+      copy: "src=files/settings.py dest=/tmp/{{ django_project_name }}/{{ django_project_name }}/settings.py"
+
+    - name: Link app from /vagrant/kombucha_manager to vagrant django project
+      file: "src=/vagrant/mysite/kombucha_manager dest=/tmp/{{ django_project_name }}/kombucha_manager state=link"
+
+    - name: Perform Django Database Migrations
       django_manage:
       args:
         virtualenv: "{{ virtualenv_path }}"
-        command: "startproject {{ django_project_name }}"
-        app_path: "/vagrant/mysite/kombucha_manager"
-
-    - name: Copy settings.py
-      copy: "src=provision/files/settings.py /tmp/{{ django_project_name }}/{{ django_project_name }}"
-
-    - name:
-      django_manage:
-      args:
-        virtualenv: "{{ virtualenv_dir }}/"
         command: migrate
-        app_path: "/vagrant/mysite/kombucha_manager"
+        app_path: "/tmp/{{ django_project_name }}"
+
+    - name: copy WSGI http.conf
+      template: src=templates/wsgi.conf.j2 dest=/etc/httpd/conf.d/wsgi.conf
+      notify:
+      - restart httpd
+
+    - name: ensure httpd is started
+      service: name=httpd state=started
+
+  handlers:
+    - name: restart httpd
+      service: name=httpd state=restarted
