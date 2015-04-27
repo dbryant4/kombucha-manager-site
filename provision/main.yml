@@ -1,0 +1,43 @@
+---
+
+- hosts: all
+  sudo: yes
+
+  vars:
+    virtualenv_path: "/tmp/venv"
+    django_project_name: "mysite"
+
+  tasks:
+    - name: install epel
+      yum: "name=http://mirror.steadfast.net/epel/7/x86_64/e/epel-release-7-5.noarch.rpm state=present"
+
+    - yum: name=python-pip state=present
+
+    - name: install virtual env
+      pip: name=virtualenv state=present
+
+    - name: create virtualenv
+      command: "virtualenv {{ virtualenv_path }}"
+
+    - name: install requirements
+      pip: "requirements=/vagrant/requirements.txt virtualenv={{ virtualenv_path }}"
+
+    - name: Create django project directory
+      file: "path=/tmp/{{ django_project_name }} state=directory"
+
+    - name:
+      django_manage:
+      args:
+        virtualenv: "{{ virtualenv_path }}"
+        command: "startproject {{ django_project_name }}"
+        app_path: "/vagrant/mysite/kombucha_manager"
+
+    - name: Copy settings.py
+      copy: "src=provision/files/settings.py /tmp/{{ django_project_name }}/{{ django_project_name }}"
+
+    - name:
+      django_manage:
+      args:
+        virtualenv: "{{ virtualenv_dir }}/"
+        command: migrate
+        app_path: "/vagrant/mysite/kombucha_manager"
