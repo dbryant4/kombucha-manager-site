@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
   config.vm.box = "centos-7-minimal"
   config.vm.box_url = "https://atlas.hashicorp.com/relativkreativ/boxes/centos-7-minimal/versions/1.0.3/providers/virtualbox.box"
 
-  config.vm.network "forwarded_port", guest: 8000, host: 8000
+  config.vm.network "forwarded_port", guest: 8000, host: 1234
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "provision/main.yml"

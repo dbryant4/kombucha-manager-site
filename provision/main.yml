@@ -21,8 +21,14 @@
     - name: install requirements
       pip: "requirements=/vagrant/requirements.txt"
 
-    - command: "/bin/postgresql-setup initdb"
+    - command: "/bin/postgresql-setup initdb creates=/var/lib/pgsql/data"
       ignore_errors: true
+
+    - replace:
+      args:
+        dest: /var/lib/pgsql/data/pg_hba.conf
+        regexp: 'host[ \t]* all[ \t]* all[ \t]* 127.0.0.1/32[ \t]*ident'
+        replace: 'host   all  all    127.0.0.1/32    trust'
 
     - service: name=postgresql state=started enabled=true
 
@@ -55,10 +61,10 @@
     db_name: mysite
     db_user: bucha
     db_pass: br00klyn
-    database_url: 'postgres://{{db_user}}:{{db_pass}}@localhost/{{db_name}}'
+    database_url: 'postgres://{{db_user}}:{{db_pass}}@127.0.0.1/{{db_name}}'
   tasks:
     - name: Perform Django Database Migrations
-      command: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py migrate"
+      shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py migrate"
 
     - name: start gnuicorn
-      command: "DATABASE_URL='{{ database_url }}' gunicorn mysite.wsgi --log-file /tmp/gunicorn.log -D"
+      shell: "DATABASE_URL='{{ database_url }}' gunicorn mysite.wsgi --log-file /tmp/gunicorn.log -D --pythonpath=/vagrant/ --bind 0.0.0.0:8000"
