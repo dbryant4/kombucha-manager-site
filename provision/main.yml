@@ -18,10 +18,13 @@
         - gcc
         - make
 
+    - name: disable firewall
+      service: name=firewalld state=stopped enabled=false
+
     - name: install requirements
       pip: "requirements=/vagrant/requirements.txt"
 
-    - command: "/bin/postgresql-setup initdb creates=/var/lib/pgsql/data"
+    - command: "/bin/postgresql-setup initdb creates=/var/lib/pgsql/data/pg_hba.conf"
       ignore_errors: true
 
     - replace:
