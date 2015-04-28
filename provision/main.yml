@@ -3,10 +3,6 @@
 - hosts: all
   sudo: yes
 
-  vars:
-    virtualenv_path: "/tmp/venv"
-    django_project_name: "mytestingsite"
-
   tasks:
     - name: install epel
       yum: "name=http://mirror.steadfast.net/epel/7/x86_64/e/epel-release-7-5.noarch.rpm state=present"
@@ -14,45 +10,55 @@
     - yum: "name={{ item }} state=present"
       with_items:
         - python-pip
-        - httpd
-        - mod_wsgi
-
-    - name: install virtual env
-      pip: name=virtualenv state=present
-
-    - name: create virtualenv
-      command: "virtualenv {{ virtualenv_path }}"
+        - python-devel
+        - postgresql
+        - postgresql-devel
+        - postgresql-contrib
+        - postgresql-server
+        - gcc
+        - make
 
     - name: install requirements
-      pip: "requirements=/vagrant/requirements.txt virtualenv={{ virtualenv_path }}"
+      pip: "requirements=/vagrant/requirements.txt"
 
-    - name: Create django project directory
-      file: "path=/tmp/{{ django_project_name }} state=directory"
+    - command: "/bin/postgresql-setup initdb"
+      ignore_errors: true
 
-    - name: Create django project
-      shell: "source {{ virtualenv_path }}/bin/activate && django-admin startproject {{ django_project_name }} /tmp/{{ django_project_name }} creates=/tmp/{{ django_project_name }}/{{ django_project_name }}"
+    - service: name=postgresql state=started enabled=true
 
-    - name: Copy settings.py
-      copy: "src=files/settings.py dest=/tmp/{{ django_project_name }}/{{ django_project_name }}/settings.py"
+- hosts: all
+  sudo: yes
+  sudo_user: postgres
+  gather_facts: false
+  vars:
+    db_name: mysite
+    db_user: bucha
+    db_pass: br00klyn
 
-    - name: Link app from /vagrant/kombucha_manager to vagrant django project
-      file: "src=/vagrant/mysite/kombucha_manager dest=/tmp/{{ django_project_name }}/kombucha_manager state=link"
-
-    - name: Perform Django Database Migrations
-      django_manage:
+  tasks:
+    - name: create database
+      postgresql_db:
       args:
-        virtualenv: "{{ virtualenv_path }}"
-        command: migrate
-        app_path: "/tmp/{{ django_project_name }}"
+        name: "{{ db_name }}"
+    - name: create database user
+      postgresql_user:
+      args:
+        db: "{{ db_name }}"
+        name: "{{ db_user }}"
+        password: "{{ db_pass }}"
+        priv: "ALL"
 
-    - name: copy WSGI http.conf
-      template: src=templates/wsgi.conf.j2 dest=/etc/httpd/conf.d/wsgi.conf
-      notify:
-      - restart httpd
+- hosts: all
+  sudo: yes
+  gather_facts: false
+  vars:
+    db_name: mysite
+    db_user: bucha
+    db_pass: br00klyn
+    database_url: 'postgres://{{db_user}}:{{db_pass}}@localhost/{{db_name}}'
+  tasks:
+    - name: Perform Django Database Migrations
+      command: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py migrate"
 
-    - name: ensure httpd is started
-      service: name=httpd state=started
-
-  handlers:
-    - name: restart httpd
-      service: name=httpd state=restarted
+    - name: start gnuicorn
+      command: "DATABASE_URL='{{ database_url }}' gunicorn mysite.wsgi --log-file /tmp/gunicorn.log -D"
