@@ -24,9 +24,13 @@ class BatchSerializer(serializers.HyperlinkedModelSerializer):
                   'brew_volume',
                   'scoby_count',
                   'brew_date',
-                  'comments'
+                  'comments',
+                  'vessel',
                  )
 
+class VesselSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Vessel
 
 class SourceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

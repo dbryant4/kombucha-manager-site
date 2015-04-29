@@ -3,3 +3,4 @@ venv
 vagrant_project
 *.pyc
 staticfiles
+.DS_Store

@@ -13,6 +13,7 @@ router.register(r'teatypes', views.TeaTypeViewSet)
 router.register(r'teas', views.TeaViewSet)
 router.register(r'flavors', views.FlavorViewSet)
 router.register(r'bottles', views.BottleViewSet)
+router.register(r'vessels', views.VesselViewSet)
 
 urlpatterns = [
     # Examples:
