@@ -3,8 +3,8 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 
-from kombucha_manager.serializers import UserSerializer, GroupSerializer, BatchSerializer, SourceSerializer, TeaTypeSerializer, TeaSerializer, FlavorSerializer, BottleSerializer
-from kombucha_manager.models import Batch, Source, TeaType, Tea, Flavor, Bottle
+from kombucha_manager.serializers import *
+from kombucha_manager.models import *
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -21,6 +21,12 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
+class VesselViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows vessels to be viewed or edited.
+    """
+    queryset = Vessel.objects.all()
+    serializer_class = VesselSerializer
 
 class BatchViewSet(viewsets.ModelViewSet):
     """

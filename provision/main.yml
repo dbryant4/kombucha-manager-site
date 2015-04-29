@@ -66,8 +66,16 @@
     db_pass: br00klyn
     database_url: 'postgres://{{db_user}}:{{db_pass}}@127.0.0.1/{{db_name}}'
   tasks:
+    - name: kill gunicorn
+      shell: "pkill -9 gunicorn"
+      register: kill_gunicorn
+      failed_when: "kill_gunicorn.rc > 1"
+
     - name: Perform Django Database Migrations
       shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py migrate"
+
+    - name: Create admin user
+      shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py loaddata /vagrant/provision/files/data.json"
 
     - name: start gnuicorn
       shell: "DATABASE_URL='{{ database_url }}' gunicorn mysite.wsgi --log-file /tmp/gunicorn.log -D --pythonpath=/vagrant/ --bind 0.0.0.0:8000"

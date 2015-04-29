@@ -1,6 +1,12 @@
 from django.db import models
 from datetime import datetime
 
+class Vessel(models.Model):
+    name = models.CharField(max_length=200, primary_key=True)
+
+    def __unicode__(self):
+        return self.name
+
 class Source(models.Model):
     name = models.CharField(max_length=200, primary_key=True)
     url = models.CharField(max_length=200, null=True, blank=True)
@@ -28,6 +34,7 @@ class Tea(models.Model):
                             ", ".join(tea_types))
 
 class Batch(models.Model):
+    vessel = models.ManyToManyField(Vessel, related_name='batches')
     tea = models.ManyToManyField(Tea, related_name='batches')
     tea_volume = models.DecimalField(max_digits=5, decimal_places=1, default=0.0)
     sugar_volume = models.DecimalField(max_digits=5, decimal_places=2, default=0.0)
