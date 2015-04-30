@@ -71,6 +71,9 @@
       register: kill_gunicorn
       failed_when: "kill_gunicorn.rc > 1"
 
+    - name: Perform Django Database Migrations for auth
+      shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py migrate auth"
+
     - name: Perform Django Database Migrations
       shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py migrate"
 

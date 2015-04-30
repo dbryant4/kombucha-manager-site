@@ -5,14 +5,12 @@ from django.contrib.auth.models import User
 
 class Organization(models.Model):
     name = models.CharField(max_length=200)
-    #users = models.ForeignKey(User, related_name="organization")
-    #users = models.OneToOneField(User, related_name="organization")
 
     def __unicode__(self):
         return self.name
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, related_name="user_profile", primary_key=True)
+    user = models.OneToOneField(User, primary_key=True, related_name="user_profile")
     organization = models.ForeignKey(Organization, related_name="user_profiles")
 
     def __unicode__(self):
