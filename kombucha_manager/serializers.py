@@ -21,19 +21,16 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'organization', 'first_name', 'last_name')
+        fields = ('url', 'username', 'email', 'organization', 'first_name', 'last_name')
         lookup_field = 'username'
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
-    user = serializers.Field(source='user.username')
+class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
+    #user = serializers.Field(source='user.username')
 
     class Meta:
         model = UserProfile
-        fields = ('user')
-
-
-
+        #fields = ('user')
 
 
 class BatchSerializer(serializers.HyperlinkedModelSerializer):

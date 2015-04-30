@@ -6,6 +6,7 @@ from kombucha_manager import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
+router.register(r'user-profile', views.UserProfileViewSet)
 router.register(r'batches', views.BatchViewSet)
 router.register(r'sources', views.SourceViewSet)
 router.register(r'teatypes', views.TeaTypeViewSet)
