@@ -6,7 +6,6 @@ from kombucha_manager import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
 router.register(r'batches', views.BatchViewSet)
 router.register(r'sources', views.SourceViewSet)
 router.register(r'teatypes', views.TeaTypeViewSet)
@@ -14,6 +13,7 @@ router.register(r'teas', views.TeaViewSet)
 router.register(r'flavors', views.FlavorViewSet)
 router.register(r'bottles', views.BottleViewSet)
 router.register(r'vessels', views.VesselViewSet)
+router.register(r'organizations', views.OrganizationViewSet)
 
 urlpatterns = [
     # Examples:

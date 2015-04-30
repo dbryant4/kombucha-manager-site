@@ -1,21 +1,39 @@
 from django.db import models
 from datetime import datetime
 
+from django.contrib.auth.models import User
+
+class Organization(models.Model):
+    name = models.CharField(max_length=200)
+    #users = models.ForeignKey(User, related_name="organization")
+    #users = models.OneToOneField(User, related_name="organization")
+
+    def __unicode__(self):
+        return self.name
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, related_name="user_profile", primary_key=True)
+    organization = models.ForeignKey(Organization, related_name="user_profiles")
+
+    def __unicode__(self):
+        return self.user.username
+
 class Vessel(models.Model):
-    name = models.CharField(max_length=200, primary_key=True)
+    organization = models.ForeignKey(Organization, related_name="vessels")
+    name = models.CharField(max_length=200)
 
     def __unicode__(self):
         return self.name
 
 class Source(models.Model):
-    name = models.CharField(max_length=200, primary_key=True)
+    name = models.CharField(max_length=200)
     url = models.CharField(max_length=200, null=True, blank=True)
 
     def __unicode__(self):
         return self.name
 
 class TeaType(models.Model):
-    name = models.CharField(max_length=200, primary_key=True)
+    name = models.CharField(max_length=200)
 
     def __unicode__(self):
         return self.name
@@ -63,3 +81,4 @@ class Bottle(models.Model):
     def __unicode__(self):
         flavors = (flavor.name for flavor in self.flavors.all())
         return "Bottle #%s (%s) - %s" % (self.id, ", ".join(flavors), self.bottle_date)
+

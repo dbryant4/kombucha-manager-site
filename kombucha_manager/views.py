@@ -6,20 +6,31 @@ from rest_framework import viewsets
 from kombucha_manager.serializers import *
 from kombucha_manager.models import *
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    lookup_field = 'username'
+
+    def retrieve(self, request, username=None):
+        queryset = User.objects.all()
+        user = get_object_or_404(queryset, username=username)
+        serializer = UserSerializer(user, context={'request': request})
+        return Response(serializer.data)
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
 
 
-class GroupViewSet(viewsets.ModelViewSet):
+class OrganizationViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows groups to be viewed or edited.
+    API endpoint that allows organizations to be viewed or edited.
     """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+    queryset = Organization.objects.all()
+    serializer_class = OrganizationSerializer
 
 class VesselViewSet(viewsets.ModelViewSet):
     """

@@ -3,16 +3,33 @@ from rest_framework import serializers
 
 from kombucha_manager.models import *
 
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+    organization = serializers.CharField(source='user_profile.organization')
+
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'groups')
+        fields = ('username', 'email', 'organization')
+        lookup_field = 'username'
 
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+class UserProfileSerializer(serializers.ModelSerializer):
+    user = serializers.Field(source='user.username')
+
     class Meta:
-        model = Group
-        fields = ('url', 'name')
+        model = UserProfile
+        fields = ('user')
+
+
+class OrganizationSerializer(serializers.HyperlinkedModelSerializer):
+    #users = UserSerializer(source='user_profiles', many=True)
+
+    class Meta:
+        model = Organization
+        fields = ('name',
+                  'vessels',
+                  #'users'
+                 )
 
 
 class BatchSerializer(serializers.HyperlinkedModelSerializer):
