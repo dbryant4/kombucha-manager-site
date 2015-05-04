@@ -6,7 +6,7 @@
 	});
 
 	app.controller('PanelController', function(){
-		this.tab = 'brews'; // Default tab
+		this.tab = 'batches'; // Default tab
 
 		this.selectTab = function(setTab){
 			this.tab = setTab;
@@ -17,18 +17,30 @@
 		};
 	});
 
-	app.controller('BrewsController', function(){
-		this.batches = brews
+	app.controller('BatchController', function(){
+		this.batches = batches.results;
 
+		this.getBatches = function(){
+			return this.batches;
+		};
 		
 	});
 
-	var brews = {
+	app.controller('BottleController', function(){
+		
+	});
+
+	app.controller('VesselController', function(){
+		
+	});
+
+	var batches = {
 	    "count": 1,
 	    "next": null,
 	    "previous": null,
 	    "results": [
 	        {
+	        	"id": 1,
 	            "tea": [
 	                "https://kombucha-manager.herokuapp.com/api/v1/teas/3/"
 	            ],
