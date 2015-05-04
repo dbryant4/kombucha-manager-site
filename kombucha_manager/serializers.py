@@ -32,11 +32,36 @@ class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
         model = UserProfile
         #fields = ('user')
 
+class VesselSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Vessel
+
+class SourceSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Source
+        fields = ('id', 'name', 'source_url', 'url')
+
+class TeaTypeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = TeaType
+        fields = ('id', 'name', 'url')
+
+class TeaSerializer(serializers.HyperlinkedModelSerializer):
+    types = TeaTypeSerializer(source='tea_types', many=True)
+    sources = SourceSerializer(many=True)
+
+    class Meta:
+        model = Tea
+        fields = ('id', 'name', 'comments', 'types', 'sources')
 
 class BatchSerializer(serializers.HyperlinkedModelSerializer):
+    teas = TeaSerializer(source='tea', many=True)
+    #vessel = VesselSerializer()
+
     class Meta:
         model = Batch
-        fields = ('tea',
+        fields = ('id',
+                  'teas',
                   'tea_volume',
                   'sugar_volume',
                   'brew_volume',
@@ -45,23 +70,6 @@ class BatchSerializer(serializers.HyperlinkedModelSerializer):
                   'comments',
                   'vessel',
                  )
-
-class VesselSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Vessel
-
-class SourceSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Source
-
-class TeaTypeSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = TeaType
-        fields = ('name',)
-
-class TeaSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Tea
 
 class FlavorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
