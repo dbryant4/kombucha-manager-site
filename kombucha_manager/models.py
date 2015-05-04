@@ -50,7 +50,7 @@ class Tea(models.Model):
                             ", ".join(tea_types))
 
 class Batch(models.Model):
-    vessel = models.ManyToManyField(Vessel, related_name='batches')
+    vessel = models.ForeignKey(Vessel, related_name='batches')
     tea = models.ManyToManyField(Tea, related_name='batches')
     tea_volume = models.DecimalField(max_digits=5, decimal_places=1, default=0.0)
     sugar_volume = models.DecimalField(max_digits=5, decimal_places=2, default=0.0)

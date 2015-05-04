@@ -56,7 +56,7 @@ class TeaSerializer(serializers.HyperlinkedModelSerializer):
 
 class BatchSerializer(serializers.HyperlinkedModelSerializer):
     teas = TeaSerializer(source='tea', many=True)
-    #vessel = VesselSerializer()
+    vessel = VesselSerializer()
 
     class Meta:
         model = Batch
