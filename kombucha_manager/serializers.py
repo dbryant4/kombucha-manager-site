@@ -35,6 +35,7 @@ class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
 class VesselSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Vessel
+        fields = ('id', 'url', 'name', 'organization')
 
 class SourceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -75,6 +76,20 @@ class FlavorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Flavor
 
+class BottleSizeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = BottleSize
+
 class BottleSerializer(serializers.HyperlinkedModelSerializer):
+    size = BottleSizeSerializer()
+
     class Meta:
         model = Bottle
+        fields = ('id',
+                  'url',
+                  'size',
+                  'flavors',
+                  'bottle_date',
+                  'comments',
+                  'batch',
+                  )

@@ -86,3 +86,10 @@ class BottleViewSet(viewsets.ModelViewSet):
     """
     queryset = Bottle.objects.all()
     serializer_class = BottleSerializer
+
+class BottleSizeViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows bottle sizes to be viewed or edited.
+    """
+    queryset = BottleSize.objects.all()
+    serializer_class = BottleSizeSerializer

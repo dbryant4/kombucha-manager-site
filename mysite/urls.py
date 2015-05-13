@@ -13,6 +13,7 @@ router.register(r'teatypes', views.TeaTypeViewSet)
 router.register(r'teas', views.TeaViewSet)
 router.register(r'flavors', views.FlavorViewSet)
 router.register(r'bottles', views.BottleViewSet)
+router.register(r'bottle-sizes', views.BottleSizeViewSet)
 router.register(r'vessels', views.VesselViewSet)
 router.register(r'organizations', views.OrganizationViewSet)
 

@@ -59,6 +59,9 @@ class Batch(models.Model):
     brew_date = models.DateField('date of first fermentation', default=datetime.now().today)
     comments = models.TextField(null=True, blank=True)
 
+    class Meta:
+        verbose_name_plural = "batches"
+
     def __unicode__(self):
         return "Batch #%s - %s" % (self.id, self.brew_date)
 
@@ -70,13 +73,20 @@ class Flavor(models.Model):
     def __unicode__(self):
         return self.name
 
+class BottleSize(models.Model):
+    size = models.IntegerField(default=1)
+
+    def __unicode__(self):
+        return "%s fl oz" % self.size
+
 class Bottle(models.Model):
     batch = models.ForeignKey(Batch, related_name='bottles')
+    size = models.ForeignKey(BottleSize, related_name='bottles')
     flavors = models.ManyToManyField(Flavor, related_name='bottles')
     bottle_date = models.DateField('date bottled', default=datetime.now().today)
     comments = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         flavors = (flavor.name for flavor in self.flavors.all())
-        return "Bottle #%s (%s) - %s" % (self.id, ", ".join(flavors), self.bottle_date)
+        return "Bottle #%s %s fl oz (%s) - %s" % (self.id, self.size.size, ", ".join(flavors), self.bottle_date)
 
