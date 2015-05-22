@@ -17,11 +17,11 @@ class OrganizationSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    organization = OrganizationSerializer(source='user_profile.organization')
+    #organization = OrganizationSerializer(source='user_profile.organization')
 
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'organization', 'first_name', 'last_name')
+        fields = ('url', 'username', 'email', 'first_name', 'last_name')
         lookup_field = 'username'
 
 
@@ -33,9 +33,14 @@ class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
         #fields = ('user')
 
 class VesselSerializer(serializers.HyperlinkedModelSerializer):
+    #organization = serializers.PrimaryKeyRelatedField(queryset=Organization.objects.all())
+    #current_batch = serializers.HyperlinkedRelatedField(read_only=True, view_name='batch-view', many=True)
+
     class Meta:
         model = Vessel
-        fields = ('id', 'url', 'name', 'organization')
+        fields = ('id', 'url', 'name', 'batches')
+
+    
 
 class SourceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -53,7 +58,7 @@ class TeaSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Tea
-        fields = ('id', 'name', 'comments', 'types', 'sources')
+        fields = ('id', 'url', 'name', 'comments', 'types', 'sources')
 
 class BatchSerializer(serializers.HyperlinkedModelSerializer):
     teas = TeaSerializer(source='tea', many=True)
@@ -71,6 +76,7 @@ class BatchSerializer(serializers.HyperlinkedModelSerializer):
                   'comments',
                   'vessel',
                  )
+    
 
 class FlavorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

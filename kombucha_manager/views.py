@@ -21,6 +21,18 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
         serializer = UserSerializer(user, context={'request': request})
         return Response(serializer.data)
 
+    def get_queryset(self):
+        """
+        This view should return a list of all the users
+        for the currently authenticated user's organization.
+        """
+
+        user = self.request.user
+        organization = user.user_profile.organization
+        user_profiles = UserProfile.objects.filter(organization=organization)
+        users = User.objects.filter(user_profile__in=user_profiles)
+        return users
+
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
@@ -40,12 +52,34 @@ class VesselViewSet(viewsets.ModelViewSet):
     queryset = Vessel.objects.all()
     serializer_class = VesselSerializer
 
+    def get_queryset(self):
+        """
+        This view should return a list of all the vessels
+        for the currently authenticated user's organization.
+        """
+
+        user = self.request.user
+        organization = user.user_profile.organization
+        return Vessel.objects.filter(organization=organization)
+
 class BatchViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows batches to be viewed or edited.
     """
     queryset = Batch.objects.all()
     serializer_class = BatchSerializer
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the batches
+        for the currently authenticated user's organization.
+        """
+
+        user = self.request.user
+        organization = user.user_profile.organization
+        vessels = Vessel.objects.filter(organization=organization)
+        batches = Batch.objects.filter(vessel__in=vessels)
+        return batches
 
 
 class SourceViewSet(viewsets.ModelViewSet):

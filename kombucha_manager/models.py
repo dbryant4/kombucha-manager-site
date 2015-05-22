@@ -21,7 +21,7 @@ class Vessel(models.Model):
     name = models.CharField(max_length=200)
 
     def __unicode__(self):
-        return self.name
+        return "%s - %s" % (self.organization, self.name)
 
 class Source(models.Model):
     name = models.CharField(max_length=200)
