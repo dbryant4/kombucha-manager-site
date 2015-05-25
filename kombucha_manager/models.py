@@ -63,7 +63,7 @@ class Batch(models.Model):
         verbose_name_plural = "batches"
 
     def __unicode__(self):
-        return "Batch #%s - %s" % (self.id, self.brew_date)
+        return "Batch #%s (%s) - %s" % (self.id, self.tea.first(), self.brew_date)
 
 class Flavor(models.Model):
     name = models.CharField(max_length=200)
