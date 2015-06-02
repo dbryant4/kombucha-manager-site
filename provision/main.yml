@@ -4,12 +4,11 @@
   sudo: yes
 
   tasks:
-    - name: install epel
-      yum: "name=http://mirror.steadfast.net/epel/7/x86_64/e/epel-release-7-5.noarch.rpm state=present"
-
     - yum: "name={{ item }} state=present"
+      async: 1000
+      poll: 0
+      register: yum_sleeper
       with_items:
-        - python-pip
         - python-devel
         - postgresql
         - postgresql-devel
@@ -18,11 +17,25 @@
         - gcc
         - make
 
+    - name: install pip
+      get_url: url=https://bootstrap.pypa.io/get-pip.py dest=/tmp/get-pip.py mode=0755
+
+    - name: installing pip
+      command: "/bin/python /tmp/get-pip.py creates=/bin/pip"
+
     - name: disable firewall
       service: name=firewalld state=stopped enabled=false
 
     - name: install requirements
       pip: "requirements=/vagrant/requirements.txt"
+      args:
+        extra_args: --find-links=/vagrant/.wheelhouse
+
+    - name: wait for yum install to finish
+      async_status: jid={{ yum_sleeper.ansible_job_id }}
+      register: job_result
+      until: job_result.finished is defined and job_result.finished
+      retries: 30
 
     - command: "/bin/postgresql-setup initdb creates=/var/lib/pgsql/data/pg_hba.conf"
       ignore_errors: true
@@ -52,10 +65,9 @@
     - name: create database user
       postgresql_user:
       args:
-        db: "{{ db_name }}"
         name: "{{ db_user }}"
         password: "{{ db_pass }}"
-        priv: "ALL"
+        role_attr_flags: "CREATEDB,CREATEROLE,SUPERUSER,LOGIN"
 
 - hosts: all
   sudo: yes
@@ -77,8 +89,11 @@
     - name: Perform Django Database Migrations
       shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py migrate"
 
-#    - name: Create admin user
-#      shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py loaddata /vagrant/provision/files/data.json"
+    - name: Perform Django Static File Collection
+      shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py collectstatic --no-color --noinput"
+
+    - name: Load test data
+      shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py loaddata kombucha_manager dev --no-color"
 
     - name: start gnuicorn
       shell: "DATABASE_URL='{{ database_url }}' gunicorn mysite.wsgi --log-file /tmp/gunicorn.log -D --pythonpath=/vagrant/ --bind 0.0.0.0:8000"
