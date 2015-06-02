@@ -37,7 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'kombucha_manager',
     'rest_framework',
+    'rest_framework.authtoken',
     'django_extensions',
+    'rest_auth'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -110,7 +112,11 @@ STATICFILES_DIRS = (
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
+    )
 }
 
 # Parse database configuration from $DATABASE_URL
