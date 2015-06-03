@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="kombucha_manager">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="css/loading-bar.min.css">
+	</head>
+	<body ng-controller="ManagerController as manager">
+		<login-form></login-form>
+		<section ng-controller="PanelController as panel">
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#km-navbar">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#">Kombucha Manager</a>
+			    </div>
+
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="km-navbar">
+		    	
+		      		<ul class="nav navbar-nav">
+		      			<li ng-class="{ active:panel.isSelected('batches') }"> 
+							<a href ng-click="panel.selectTab('batches')">Batches</a>
+						</li>
+						<li ng-class="{ active:panel.isSelected('bottles') }">
+							<a href ng-click="panel.selectTab('bottles')">Bottles</a>
+						</li>
+						<li ng-class="{ active:panel.isSelected('vessels') }">
+							<a href ng-click="panel.selectTab('vessels')">Vessels</a>
+						</li>
+		      		</ul>
+			      	<ul class="nav navbar-nav navbar-right" ng-controller="loginController as loginCtrl">
+				        <li><a href="#" ng-click="loginCtrl.logout()">Logout</a></li>
+				    </ul>
+			    </div><!-- /.navbar-collapse -->
+			  </div><!-- /.container-fluid -->
+			</nav>
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="panel" ng-show="panel.isSelected('batches')">
+						<section ng-controller="BatchController as batchCtrl">
+							<h4>Batches</h4>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBatchModal">
+								Add Batch
+							</button>
+
+							<add-batch-form></add-batch-form>
+							<batch-table></batch-table>
+						</section>
+					</div>
+					<div class="panel" ng-show="panel.isSelected('bottles')">
+						<section ng-controller="BottleController as bottleCtrl">
+							<h4>Bottles</h4>
+							<bottle-table></bottle-table>
+						</section>
+					</div>
+					<div class="panel" ng-show="panel.isSelected('vessels')">
+						<section ng-controller="VesselController as vesselCtrl">
+							<h4>Vessels</h4>
+							<vessel-table></vessel-table>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<script src="js/jquery-1.11.2.min.js"></script>
+		<script src="js/jquery-migrate-1.2.1.min.js"></script>
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/loading-bar.min.js"></script>
+	</body>
+</html>

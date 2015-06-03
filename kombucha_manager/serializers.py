@@ -35,12 +35,11 @@ class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
 class VesselSerializer(serializers.HyperlinkedModelSerializer):
     #organization = serializers.PrimaryKeyRelatedField(queryset=Organization.objects.all())
     #current_batch = serializers.HyperlinkedRelatedField(read_only=True, view_name='batch-view', many=True)
+    #last_batch = serializers.HyperlinkedRelatedField(queryset=Batch.objects.last(), view_name='batch-detail')
 
     class Meta:
         model = Vessel
         fields = ('id', 'url', 'name', 'batches')
-
-    
 
 class SourceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -61,13 +60,13 @@ class TeaSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'url', 'name', 'comments', 'types', 'sources')
 
 class BatchSerializer(serializers.HyperlinkedModelSerializer):
-    teas = TeaSerializer(source='tea', many=True)
-    vessel = VesselSerializer()
+    tea = serializers.HyperlinkedRelatedField(queryset=Tea.objects.all(), many=True, view_name='tea-detail')
+    vessel = serializers.HyperlinkedRelatedField(queryset=Vessel.objects.all(), view_name='vessel-detail')
 
     class Meta:
         model = Batch
         fields = ('id',
-                  'teas',
+                  'tea',
                   'tea_volume',
                   'sugar_volume',
                   'brew_volume',

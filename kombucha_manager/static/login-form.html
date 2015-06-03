@@ -1,0 +1,22 @@
+					<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModelLabel" aria-hidden="true" data-backdrop='static'>
+						<div class="modal-dialog">
+							<div class="modal-content" ng-controller="loginController as loginCtrl">
+								<div class="modal-header">
+									<h4 class="modal-title" id="loginModalLabel">Login</h4>
+								</div>
+								<div class="modal-body">
+									<form id="loginForm" ng-submit="login()">
+										<div class="form-group">
+											<input ng-model="username" type="text" required="true" class="form-control" placeholder="Username"/>
+										</div>
+										<div class="form-group">
+											<input ng-model="password" type="password" required="true" class="form-control" placeholder="Password"/>
+										</div>
+									</form>
+								</div>
+							    <div class="modal-footer">
+							        <button type="button" class="btn btn-primary" ng-click="login()">Login</button>
+							    </div>
+							</div>
+						</div>
+					</div>

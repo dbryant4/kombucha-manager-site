@@ -1,0 +1,28 @@
+							<table class="table table-striped">
+								<thead>
+									<td>ID</td>
+									<td>Brew Date</td>
+									<td>Teas</td>
+									<td>Vessel</td>
+								</thead>
+								<tbody>
+									<tr ng-repeat="batch in batchCtrl.getBatches()">
+										<td>{{ batch.id }}</td>
+										<td>{{ batch.brew_date }}</td>
+										<td>
+											<span ng-repeat="tea in batch.teas">
+												<span ng-repeat="source in tea.sources">
+													{{ source.name }}
+												</span>
+												{{ tea.name }}
+												<span ng-repeat="type in tea.types">
+													{{ type.name }}
+												</span>
+											</span>
+										</td>
+										<td>
+											{{ batch.vessel.name }}
+										</td>
+									</tr>
+								</tbody>
+							</table>

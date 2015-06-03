@@ -1,0 +1,14 @@
+							<table class="table table-striped">
+								<thead>
+									<td>ID</td>
+									<td>Bottle Date</td>
+									<td>Size (fl oz)</td>
+								</thead>
+								<tbody>
+									<tr ng-repeat="bottle in bottleCtrl.getBottles()">
+										<td>{{ bottle.id }}</td>
+										<td>{{ bottle.bottle_date }}</td>
+										<td>{{ bottle.size.size }}</td>
+									</tr>
+								</tbody>
+							</table>
