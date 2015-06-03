@@ -10,47 +10,51 @@
 									<h4 class="modal-title" id="addBatchModalLabel">New Batch</h4>
 								</div>
 								<div class="modal-body">
-									<form name="batchForm">
+									<form id="addBatchForm" ng-submit="addBatch()">
 										<div class="form-group" ng-controller="VesselController as vesselCtrl">
 											<label for="vessel">Vessel:</label>
-											<select id="vessel" class="form-control">
+											<select id="vessel" class="form-control" ng-model="vessel">
 												<option value="{{ vessel.url }}" ng-repeat="vessel in vesselCtrl.getVessels()">
 													{{ vessel.name }}
 												</option>
 											</select>
 										</div>
-										<div class="form-group" ng-controller="TeaController as teaCtrl">
+										<div class="form-group">
 											<label>Tea:</label>
-											<select class="form-control" ng-repeat="tea in teaCtrl.getTeas()">
-												<option value="{{ tea.id }}">Kombucha Brooklyn House Green</option>
+											<select class="form-control" multiple ng-controller="TeaController as teaCtrl"  ng-model="tea">
+												<option value="{{ tea.url }}" ng-repeat="tea in teaCtrl.getTeas()">
+													{{ teaCtrl.joinNames(tea.sources) }}
+													{{ tea.name }}
+													{{ teaCtrl.joinNames(tea.types) }}
+												</option>
 											</select>
 										</div>
 										<div class="form-group">
 											<label for="teaVolume">Tea Volume (grams)</label>
-											<input id="teaVolume" type="number" step="0.1" min="0.0" required="true" class="form-control" placeholder="grams"/>
+											<input id="teaVolume" type="number" step="0.1" min="0.0" required="true" class="form-control" placeholder="grams" ng-model="tea_volume"/>
 										</div>
 										<div class="form-group">
 											<label>Suger Volume (cups):</label>
-											<input type="number" step="0.1" min="0.0" required="true" class="form-control" placeholder="cups"/>
+											<input type="number" step="0.1" min="0.0" required="true" class="form-control" placeholder="cups" ng-model="sugar_volume"/>
 										</div>
 										<div class="form-group">
 											<label>Brew Volume (gallons):</label>
-											<input type="number" step="0.1" min="0.0" required="true" class="form-control" placeholder="gallons"/>
+											<input type="number" step="0.1" min="0.0" required="true" class="form-control" placeholder="gallons"  ng-model="brew_volume"/>
 										</div>
 										<div class="form-group">
 											<label>Scoby Count:</label>
-											<input type="number"  min="1" required="true" value="1" class="form-control"/>
+											<input type="number"  min="1" required="true" value="1" class="form-control"  ng-model="scoby_count"/>
 										</div>
 										<div class="form-group">
 											<label>Beginning Date of Fermentation:</label>
-											<input type="date" required="true" class="form-control"/>
+											<input type="date" required="true" class="form-control" ng-model="brew_date"/>
 										</div>
 									</form>
 								</div>
 							    <div class="modal-footer">
 							        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							        <button type="button" class="btn btn-primary">Add Batch</button>
+							        <button type="submit" class="btn btn-primary" ng-click="addBatch()">Add Batch</button>
 							    </div>
-							</div>
+							</div> 
 						</div>
 					</div>

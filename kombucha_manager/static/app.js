@@ -51,7 +51,6 @@
 			$http(req).
 			success(function(data, status, headers, config) {
 				$http.defaults.headers.common.Authorization = 'Token ' + data.key;
-				$log.debug(data.key)
 				$('#loginModal').modal('hide');
   			}).
   			error(function(data, status, headers, config) {
@@ -80,10 +79,7 @@
 		};
 	} ]);
 
-	app.controller('ManagerController', function(){
-		this.tea_types = tea_types;
-	});
-
+	
 	app.controller('PanelController', function(){
 		this.tab = 'batches'; // Default tab
 
@@ -96,30 +92,32 @@
 		};
 	});
 
-	app.controller('BatchController', ['$http', '$log', function($http, $log){
-		var batches = this;
+	app.controller('BatchController', ['$scope', '$http', '$log', '$rootScope', function($scope, $http, $log, $rootScope){
+		var batches = this; 
 
 		$http.get("/api/v1/batches/")
 		.success(function(response) {
-    		batches = response['results'];
-    		for (x in batches){
-    			/* Get tea objects 
-    			for (t in batches[x]['tea']){
-    				$http.get(batches[x]['tea'][t])
-    				.success(function(response){					
-    					batches[x]['tea'][t] = response;
-    				});
-    			}*/
-    			$log.debug(batches[x]['vessel']);
-    			/* Get vessel objects 
-    			$http.get(batches[x]['vessel'])
-    			.success(function(response){	
-    				$log.debug(response);
 
-    				batches[x]['vessel'] = response;
-    			})*/
-    		};
-    		$log.debug(batches);
+    		batches = response['results'];
+    		batches.forEach(function(batch){
+    			/* Get tea objects*/
+    			var new_teas = [];
+    			batch['tea'].forEach(function(tea){
+
+					$http.get(tea)
+    				.success(function(response){					
+    					new_teas.push(response);
+    				});
+    			});
+    			batch['tea'] = new_teas;
+
+    			/* Get vessel objects */
+    			$http.get(batch['vessel'])
+    			.success(function(response){	
+    				batch['vessel'] = response;
+    			})
+
+    		});
     	})
     	.error(function(response, status, headers, config) {
     		if (status == 403) {
@@ -132,6 +130,10 @@
 
 		this.getBatches = function(){
 			return batches;
+		};
+
+		this.addBatch = function(){
+			$log.debug($scope);
 		};
 	} ]);
 
@@ -199,39 +201,18 @@
 			return teas;
 		};
 
-		this.getTea = function(id){
-			var req = {
-			 	method: 'GET',
-			 	url: '/api/v1/teas/' + id + '/',
-			 	headers: {
-			   		'Content-Type': 'application/json'
-			 	},
-			}
-			$http(req)
-			.success(function(data, status, headers, config) {
-				return data;
-  			})
-  			.error(function(data, status, headers, config) {
-  				return data;
+		this.joinNames = function(objects){
+			var return_str = "";
+
+			angular.forEach(objects, function(object){
+				return_str = return_str + object.name + ' ';
 			});
+
+			return return_str;
 		};
 	} ]);
 
-	var tea_types = [
-        {
-            "id": 1,
-            "name": "Green",
-            "url": "http://127.0.0.1:8000/api/v1/teatypes/1/"
-        },
-        {
-            "id": 2,
-            "name": "Black",
-            "url": "http://127.0.0.1:8000/api/v1/teatypes/2/"
-        },
-        {
-            "id": 3,
-            "name": "White",
-            "url": "http://127.0.0.1:8000/api/v1/teatypes/3/"
-        }
-    ]; 
+	var token = undefined;
+
+	
 })();
