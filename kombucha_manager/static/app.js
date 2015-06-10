@@ -94,126 +94,116 @@
 	});
 
 	app.controller('BatchController', ['$scope', '$http', '$log', '$rootScope', function($scope, $http, $log, $rootScope){
-		var batches = this; 
+		this.loadBatches = function(url){
+			url = url || "/api/v1/batches/";
+			$http.get(url)
+			.success(function(response) {
 
-		$http.get("/api/v1/batches/")
-		.success(function(response) {
+	    		batches = response['results'];
+	    		batches.forEach(function(batch){
+	    			/* Get tea objects*/
+	    			var new_teas = [];
+	    			batch['tea'].forEach(function(tea){
+						$http.get(tea)
+	    				.success(function(response){					
+	    					new_teas.push(response);
+	    				});
+	    			});
+	    			batch['tea'] = new_teas;
 
-    		batches = response['results'];
-    		batches.forEach(function(batch){
-    			/* Get tea objects*/
-    			var new_teas = [];
-    			batch['tea'].forEach(function(tea){
-					$http.get(tea)
-    				.success(function(response){					
-    					new_teas.push(response);
-    				});
-    			});
-    			batch['tea'] = new_teas;
-
-    			/* Get vessel objects */
-    			$http.get(batch['vessel'])
-    			.success(function(response){	
-    				batch['vessel'] = response;
-    			})
-    		});
-    		$scope.batches = batches;
-    	})
-    	.error(function(response, status, headers, config) {
-    		if (status == 403) {
-    			$('#loginModal').on('shown.bs.modal', function () {
-  					$('#username').focus()
-				})
-    			$('#loginModal').modal('show');
-    		}
-    	});
-
-		this.getBatches = function(){
-			return batches;
-		};
+	    			/* Get vessel objects */
+	    			$http.get(batch['vessel'])
+	    			.success(function(response){	
+	    				batch['vessel'] = response;
+	    			})
+	    		});
+	    		$scope.batches = batches;
+	    	})
+	    	.error(function(response, status, headers, config) {
+	    		if (status == 403) {
+	    			$('#loginModal').on('shown.bs.modal', function () {
+	  					$('#username').focus()
+					})
+	    			$('#loginModal').modal('show');
+	    		}
+	    	});
+    	};
 
 		this.addBatch = function(){
 			$log.debug($scope);
 		};
+
+		this.loadBatches();
 	} ]);
 
 	app.controller('BottleController', ['$http', '$log', '$scope', function($http, $log, $scope){
-		var bottles = this;
+		this.loadBottles = function(url){
+			url = url || "/api/v1/bottles/";
+			$http.get(url)
+			.success(function(response) {
+	    		$scope.bottles = response;
+	    	})
+	    	.error(function(response, status, headers, config) {
+	    		if (status == 403) {
+	    			$('#loginModal').on('shown.bs.modal', function () {
+	  					$('#username').focus()
+					})
+	    			$('#loginModal').modal('show');
+	    		}
+	    	});
+    	};
 
-		$http.get("/api/v1/bottles/")
-		.success(function(response) {
-    		bottles = response['results'];
-    		$scope.bottles = bottles;
-    	})
-    	.error(function(response, status, headers, config) {
-    		if (status == 403) {
-    			$('#loginModal').on('shown.bs.modal', function () {
-  					$('#username').focus()
-				})
-    			$('#loginModal').modal('show');
-    		}
-    	});
-
-		this.getBottles = function(){
-			return bottles;
-		};
+    	this.loadBottles();
 	} ]);
 
 	app.controller('VesselController', ['$http', '$log', '$scope', function($http, $log, $scope){
-		var vessels = this;
-
-		$http.get("/api/v1/vessels/")
-		.success(function(response) {
-    		vessels = response['results'];
-    		$scope.vessels = vessels;
-    	})
-    	.error(function(response, status, headers, config) {
-    		if (status == 403) {
-    			$('#loginModal').on('shown.bs.modal', function () {
-  					$('#username').focus()
-				})
-    			$('#loginModal').modal('show');
-    		}
-    	});
-
-		this.getVessels = function(){
-			return vessels;
+		this.loadVessels = function(url){
+			url = url || "/api/v1/vessels/";
+			$http.get(url)
+			.success(function(response) {
+	    		$scope.vessels = response['results'];
+	    	})
+	    	.error(function(response, status, headers, config) {
+	    		if (status == 403) {
+	    			$('#loginModal').on('shown.bs.modal', function () {
+	  					$('#username').focus()
+					})
+	    			$('#loginModal').modal('show');
+	    		}
+	    	});
 		};
+		
+		this.loadVessels();
 	} ]);
 
-	app.controller('TeaController', ['$http', '$log', function($http, $log){
-		var teas = this;
+	app.controller('TeaController', ['$http', '$log', '$scope', function($http, $log, $scope){
+		this.loadTeas = function(url){
+			url = url || "/api/v1/teas/";
+			$http.get(url)
+			.success(function(response) {
+	    		$scope.teas = response['results'];
+	    	})
+	    	.error(function(response, status, headers, config) {
+	    		if (status == 403) {
+	    			$('#loginModal').on('shown.bs.modal', function () {
+	  					$('#username').focus()
+					})
+	    			$('#loginModal').modal('show');
+	    		}
+	    	});
 
-		$http.get("/api/v1/teas/")
-		.success(function(response) {
-    		teas = response['results'];
-    		
-    	})
-    	.error(function(response, status, headers, config) {
-    		if (status == 403) {
-    			$('#loginModal').on('shown.bs.modal', function () {
-  					$('#username').focus()
-				})
-    			$('#loginModal').modal('show');
-    		}
-    	});
+			this.joinNames = function(objects){
+				var return_str = "";
 
-		this.getTeas = function(){
-			return teas;
+				angular.forEach(objects, function(object){
+					return_str = return_str + object.name + ' ';
+				});
+
+				return return_str;
+			};
 		};
 
-		this.joinNames = function(objects){
-			var return_str = "";
-
-			angular.forEach(objects, function(object){
-				return_str = return_str + object.name + ' ';
-			});
-
-			return return_str;
-		};
+		this.loadTeas();
 	} ]);
-
-	var token = undefined;
-
 	
 })();

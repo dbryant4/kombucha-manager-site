@@ -14,7 +14,7 @@
 										<div class="form-group" ng-controller="VesselController as vesselCtrl">
 											<label for="vessel">Vessel:</label>
 											<select id="vessel" class="form-control" ng-model="vessel">
-												<option value="{{ vessel.url }}" ng-repeat="vessel in vesselCtrl.getVessels()">
+												<option value="{{ vessel.url }}" ng-repeat="vessel in vessels">
 													{{ vessel.name }}
 												</option>
 											</select>
@@ -22,7 +22,7 @@
 										<div class="form-group">
 											<label>Tea:</label>
 											<select class="form-control" multiple ng-controller="TeaController as teaCtrl"  ng-model="tea">
-												<option value="{{ tea.url }}" ng-repeat="tea in teaCtrl.getTeas()">
+												<option value="{{ tea.url }}" ng-repeat="tea in teas">
 													{{ teaCtrl.joinNames(tea.sources) }}
 													{{ tea.name }}
 													{{ teaCtrl.joinNames(tea.types) }}
