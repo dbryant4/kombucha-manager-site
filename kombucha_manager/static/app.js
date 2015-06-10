@@ -137,12 +137,13 @@
 		};
 	} ]);
 
-	app.controller('BottleController', ['$http', '$log', function($http, $log){
+	app.controller('BottleController', ['$http', '$log', '$scope', function($http, $log, $scope){
 		var bottles = this;
 
 		$http.get("/api/v1/bottles/")
 		.success(function(response) {
     		bottles = response['results'];
+    		$scope.bottles = bottles;
     	})
     	.error(function(response, status, headers, config) {
     		if (status == 403) {
@@ -158,13 +159,13 @@
 		};
 	} ]);
 
-	app.controller('VesselController', ['$http', '$log', function($http, $log){
+	app.controller('VesselController', ['$http', '$log', '$scope', function($http, $log, $scope){
 		var vessels = this;
 
 		$http.get("/api/v1/vessels/")
 		.success(function(response) {
     		vessels = response['results'];
-    		
+    		$scope.vessels = vessels;
     	})
     	.error(function(response, status, headers, config) {
     		if (status == 403) {

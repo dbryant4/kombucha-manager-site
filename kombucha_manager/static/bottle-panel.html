@@ -1,17 +1,24 @@
 						<div ng-controller="BottleController as bottleCtrl">
 							<h4>Bottles</h4>
-							<table class="table table-striped">
+							<table class="table table-striped" st-table="displayedBottlesCollection" st-safe-src="bottles">
 								<thead>
-									<td>ID</td>
-									<td>Bottle Date</td>
-									<td>Size (fl oz)</td>
+									<tr>
+										<th st-sort="id" st-sort-default="reverse">ID</td>
+										<th st-sort="bottle_date">Bottle Date</td>
+										<th st-sort="size.size">Size (fl oz)</td>
+									</tr>
 								</thead>
 								<tbody>
-									<tr ng-repeat="bottle in bottleCtrl.getBottles()">
+									<tr ng-repeat="bottle in displayedBottlesCollection">
 										<td>{{ bottle.id }}</td>
-										<td>{{ bottle.bottle_date }}</td>
+										<td>{{ bottle.bottle_date | date }}</td>
 										<td>{{ bottle.size.size }}</td>
 									</tr>
 								</tbody>
+								<tfoot>
+									<tr>
+										<td class="text-center" st-pagination="" st-items-by-page="10" colspan="3"></td>
+									</tr>
+								</tfoot>
 							</table>
 						</div>

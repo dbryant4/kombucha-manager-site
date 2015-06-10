@@ -1,13 +1,20 @@
 						<div ng-controller="VesselController as vesselCtrl">
 							<h4>Vessels</h4>
-							<table class="table table-striped">
+							<table class="table table-striped" st-table="displayedVesselsCollection" st-safe-src="vessels">
 								<thead>
-									<td>Name</td>
+									<tr>
+										<th st-sort="name" st-sort-default="true">Name</td>
+									</tr>
 								</thead>
 								<tbody>
-									<tr ng-repeat="vessel in vesselCtrl.getVessels()">
+									<tr ng-repeat="vessel in displayedVesselsCollection">
 										<td>{{ vessel.name }}</td>
 									</tr>
 								</tbody>
+								<tfoot>
+									<tr>
+										<td class="text-center" st-pagination="" st-items-by-page="10" colspan="3"></td>
+									</tr>
+								</tfoot>
 							</table>
 						</div>
