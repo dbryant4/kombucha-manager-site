@@ -16,22 +16,22 @@
 			templateUrl: '/static/add-batch-form.html'
 		};
 	});
-	app.directive('batchTable', function(){
+	app.directive('batchPanel', function(){
 		return {
 			restrict: 'E',
-			templateUrl: '/static/batch-table.html'
+			templateUrl: '/static/batch-panel.html'
 		};
 	});
-	app.directive('bottleTable', function(){
+	app.directive('bottlePanel', function(){
 		return {
 			restrict: 'E',
-			templateUrl: '/static/bottle-table.html'
+			templateUrl: '/static/bottle-panel.html'
 		};
 	});
-	app.directive('vesselTable', function(){
+	app.directive('vesselPanel', function(){
 		return {
 			restrict: 'E',
-			templateUrl: '/static/vessel-table.html'
+			templateUrl: '/static/vessel-panel.html'
 		};
 	});
 	

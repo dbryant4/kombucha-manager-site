@@ -46,26 +46,13 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="panel" ng-show="panel.isSelected('batches')">
-						<section ng-controller="BatchController as batchCtrl">
-							<h4>Batches</h4>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBatchModal">
-								Add Batch
-							</button>
-							<add-batch-form></add-batch-form>
-							<batch-table></batch-table>
-						</section>
+						<batch-panel></batch-panel>
 					</div>
 					<div class="panel" ng-show="panel.isSelected('bottles')">
-						<section ng-controller="BottleController as bottleCtrl">
-							<h4>Bottles</h4>
-							<bottle-table></bottle-table>
-						</section>
+						<bottle-panel></bottle-panel>
 					</div>
 					<div class="panel" ng-show="panel.isSelected('vessels')">
-						<section ng-controller="VesselController as vesselCtrl">
-							<h4>Vessels</h4>
-							<vessel-table></vessel-table>
-						</section>
+						<vessel-panel></vessel-panel>
 					</div>
 				</div>
 			</div>
