@@ -117,7 +117,6 @@
     			.success(function(response){	
     				batch['vessel'] = response;
     			})
-
     		});
     	})
     	.error(function(response, status, headers, config) {
