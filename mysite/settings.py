@@ -119,7 +119,7 @@ STATICFILES_FINDERS = (
     'djangobower.finders.BowerFinder',
     )
 
-#BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'static')
 #BOWER_PATH = "/home/vagrant/node_modules/bower/bin/bower"
 BOWER_INSTALLED_APPS = (
     "jquery#2.1.4",
