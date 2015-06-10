@@ -4,17 +4,19 @@
 								Add Batch
 							</button>
 							<add-batch-form></add-batch-form>
-							<table class="table table-striped">
+							<table class="table table-striped" st-table="displayedBatchCollection" st-safe-src="batches">
 								<thead>
-									<td>ID</td>
-									<td>Brew Date</td>
-									<td>Teas</td>
-									<td>Vessel</td>
+									<tr>
+										<th st-sort="id" st-sort-default="reverse">ID</th>
+										<th st-sort="brew_date">Brew Date</th>
+										<th st-sort="teas">Teas</th>
+										<th st-sort="vessel.name">Vessel</th>
+									</tr>
 								</thead>
 								<tbody>
-									<tr ng-repeat="batch in batchCtrl.getBatches()">
+									<tr ng-repeat="batch in displayedBatchCollection">
 										<td>{{ batch.id }}</td>
-										<td>{{ batch.brew_date }}</td>
+										<td>{{ batch.brew_date | date }}</td>
 										<td>
 											<span ng-repeat="tea in batch.tea">
 												<span ng-repeat="source in tea.sources">

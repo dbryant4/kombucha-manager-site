@@ -1,5 +1,5 @@
 (function(){
-	var app = angular.module('kombucha_manager', ['angular-loading-bar'])
+	var app = angular.module('kombucha_manager', ['angular-loading-bar', 'smart-table'])
 	.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     	cfpLoadingBarProvider.includeSpinner = false;
   	}]);
@@ -104,7 +104,6 @@
     			/* Get tea objects*/
     			var new_teas = [];
     			batch['tea'].forEach(function(tea){
-
 					$http.get(tea)
     				.success(function(response){					
     					new_teas.push(response);
@@ -118,6 +117,7 @@
     				batch['vessel'] = response;
     			})
     		});
+    		$scope.batches = batches;
     	})
     	.error(function(response, status, headers, config) {
     		if (status == 403) {
