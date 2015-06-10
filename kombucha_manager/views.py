@@ -1,11 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from django.contrib.auth.models import User, Group
+
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 
 from kombucha_manager.serializers import *
 from kombucha_manager.models import *
+
+def index(request):
+    return render(request, 'index.html')
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
@@ -127,6 +131,3 @@ class BottleSizeViewSet(viewsets.ModelViewSet):
     """
     queryset = BottleSize.objects.all()
     serializer_class = BottleSizeSerializer
-
-def index(request):
-    return redirect('/static/index.html')

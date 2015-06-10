@@ -4,11 +4,18 @@
   sudo: yes
 
   tasks:
+    - name: install nodejs repo
+      copy: src=files/nodesource-el.repo dest=/etc/yum.repos.d/nodesource-el.repo
+
+    - name: copy nodjs repo GPG key
+      copy: src=files/NODESOURCE-GPG-SIGNING-KEY-EL dest=/etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL
+
     - yum: "name={{ item }} state=present"
       async: 1000
       poll: 0
       register: yum_sleeper
       with_items:
+        - git
         - python-devel
         - postgresql
         - postgresql-devel
@@ -16,6 +23,7 @@
         - postgresql-server
         - gcc
         - make
+        - nodejs
 
     - name: install pip
       get_url: url=https://bootstrap.pypa.io/get-pip.py dest=/tmp/get-pip.py mode=0755
@@ -29,13 +37,16 @@
     - name: install requirements
       pip: "requirements=/vagrant/requirements.txt"
       args:
-        extra_args: --find-links=/vagrant/.wheelhouse
+        extra_args: --find-links=/vagrant/.wheelhouse 
 
     - name: wait for yum install to finish
       async_status: jid={{ yum_sleeper.ansible_job_id }}
       register: job_result
       until: job_result.finished is defined and job_result.finished
       retries: 30
+
+    - name: install bower
+      npm: name=bower global=yes
 
     - command: "/bin/postgresql-setup initdb creates=/var/lib/pgsql/data/pg_hba.conf"
       ignore_errors: true
@@ -70,7 +81,6 @@
         role_attr_flags: "CREATEDB,CREATEROLE,SUPERUSER,LOGIN"
 
 - hosts: all
-  sudo: yes
   gather_facts: false
   vars:
     db_name: mysite
@@ -78,22 +88,28 @@
     db_pass: br00klyn
     database_url: 'postgres://{{db_user}}:{{db_pass}}@127.0.0.1/{{db_name}}'
   tasks:
+    - name: create /home/vagrant/components
+      file: path=/home/vagrant/components state=directory
+
     - name: kill gunicorn
       shell: "pkill -9 gunicorn"
       register: kill_gunicorn
       failed_when: "kill_gunicorn.rc > 1"
 
+    - name: Perform Django Bower Install
+      shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py bower install --no-color"
+
     - name: Perform Django Static File Collection
       shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py collectstatic --no-color --noinput"
-
-    - name: Load test data
-      shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py loaddata kombucha_manager dev --no-color"
 
     - name: Perform Django Database Migrations for auth
       shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py migrate auth"
 
     - name: Perform Django Database Migrations
       shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py migrate"
+
+    - name: Load test data
+      shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py loaddata kombucha_manager dev --no-color"
 
     - name: start gnuicorn
       shell: "DATABASE_URL='{{ database_url }}' gunicorn mysite.wsgi --log-file /tmp/gunicorn.log -D --pythonpath=/vagrant/ --bind 0.0.0.0:8000"

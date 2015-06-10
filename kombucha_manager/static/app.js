@@ -7,31 +7,31 @@
 	app.directive('loginForm', function(){
 		return {
 			restrict: 'E',
-			templateUrl: 'login-form.html'
+			templateUrl: '/static/login-form.html'
 		};
 	});
 	app.directive('addBatchForm', function(){
 		return {
 			restrict: 'E',
-			templateUrl: 'add-batch-form.html'
+			templateUrl: '/static/add-batch-form.html'
 		};
 	});
 	app.directive('batchTable', function(){
 		return {
 			restrict: 'E',
-			templateUrl: 'batch-table.html'
+			templateUrl: '/static/batch-table.html'
 		};
 	});
 	app.directive('bottleTable', function(){
 		return {
 			restrict: 'E',
-			templateUrl: 'bottle-table.html'
+			templateUrl: '/static/bottle-table.html'
 		};
 	});
 	app.directive('vesselTable', function(){
 		return {
 			restrict: 'E',
-			templateUrl: 'vessel-table.html'
+			templateUrl: '/static/vessel-table.html'
 		};
 	});
 	

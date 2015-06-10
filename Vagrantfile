@@ -12,7 +12,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "provision/main.yml"
     ENV['ANSIBLE_ROLES_PATH'] = '..'
-    ansible.raw_arguments = [ '--sudo' ]
     ansible.verbose = "v"
   end
 end

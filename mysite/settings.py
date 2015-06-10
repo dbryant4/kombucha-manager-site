@@ -40,7 +40,8 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework.authtoken',
     'django_extensions',
-    'rest_auth'
+    'rest_auth',
+    'djangobower',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -111,6 +112,23 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
             os.path.join(BASE_DIR, 'static'),
             )
+
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    'djangobower.finders.BowerFinder',
+    )
+
+#BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+#BOWER_PATH = "/home/vagrant/node_modules/bower/bin/bower"
+BOWER_INSTALLED_APPS = (
+    "jquery#2.1.4",
+    "angular#1.4.0",
+    "bootstrap#3.3.4",
+    "angular-loading-bar#0.7.1",
+    "angular-smart-table#2.0.3"
+    )
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),

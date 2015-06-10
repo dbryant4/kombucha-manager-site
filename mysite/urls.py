@@ -18,9 +18,7 @@ router.register(r'vessels', views.VesselViewSet)
 #router.register(r'organizations', views.OrganizationViewSet)
 
 urlpatterns = [
-    # Examples:
-    url(r'^$', 'kombucha_manager.views.index', name='index'),
-    # url(r'^blog/', include('blog.urls')),
+    url(r'^$', include('kombucha_manager.urls', namespace="kombucha_manager")),
 
     url(r'^api/v1/', include(router.urls)),
     url(r'^api/v1/auth/', include('rest_framework.urls', namespace='rest_framework')),
