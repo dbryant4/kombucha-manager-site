@@ -66,6 +66,7 @@ class BatchSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Batch
         fields = ('id',
+                  'url',
                   'tea',
                   'tea_volume',
                   'sugar_volume',
