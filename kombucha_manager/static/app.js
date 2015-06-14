@@ -157,6 +157,7 @@
 			success(function(data, status, headers, config) {
 				$log.debug(data);
 				$('#addBatchModal').modal('hide');
+				$scope.batches = [];
 				$scope.loadBatches();
   			}).
   			error(function(data, status, headers, config) {
