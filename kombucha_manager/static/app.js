@@ -93,8 +93,8 @@
 		};
 	});
 
-	app.controller('BatchController', ['$scope', '$http', '$log', '$rootScope', function($scope, $http, $log, $rootScope){
-		this.loadBatches = function(url){
+	app.controller('BatchController', ['$scope', '$http', '$log', function($scope, $http, $log){
+		$scope.loadBatches = function(url){
 			url = url || "/api/v1/batches/";
 			$http.get(url)
 			.success(function(response) {
@@ -117,7 +117,10 @@
 	    				batch['vessel'] = response;
 	    			})
 	    		});
-	    		$scope.batches = batches;
+	    		$scope.batches = $scope.batches.concat(batches);
+	    		if (response.next != null){
+						$scope.loadBatches(response.next);
+				}
 	    	})
 	    	.error(function(response, status, headers, config) {
 	    		if (status == 403) {
@@ -133,15 +136,19 @@
 			$log.debug($scope);
 		};
 
-		this.loadBatches();
+		$scope.batches = [];
+		$scope.loadBatches();
 	} ]);
 
 	app.controller('BottleController', ['$http', '$log', '$scope', function($http, $log, $scope){
-		this.loadBottles = function(url){
+		$scope.loadBottles = function(url){
 			url = url || "/api/v1/bottles/";
 			$http.get(url)
 			.success(function(response) {
-	    		$scope.bottles = response;
+	    		$scope.bottles = $scope.bottles.concat(response.results);
+	    		if (response.next != null){
+					$scope.loadBottles(response.next);
+				}
 	    	})
 	    	.error(function(response, status, headers, config) {
 	    		if (status == 403) {
@@ -152,16 +159,21 @@
 	    		}
 	    	});
     	};
-
-    	this.loadBottles();
+    	
+    	$scope.bottles = [];
+    	$scope.loadBottles();
 	} ]);
 
 	app.controller('VesselController', ['$http', '$log', '$scope', function($http, $log, $scope){
-		this.loadVessels = function(url){
+		$scope.loadVessels = function(url){
 			url = url || "/api/v1/vessels/";
+			$scope.vessels = [];
 			$http.get(url)
 			.success(function(response) {
-	    		$scope.vessels = response['results'];
+				$scope.vessels = $scope.vessels.concat(response.results);
+				if (response.next != null){
+					loadVessels(response.next);
+				}
 	    	})
 	    	.error(function(response, status, headers, config) {
 	    		if (status == 403) {
@@ -172,8 +184,8 @@
 	    		}
 	    	});
 		};
-		
-		this.loadVessels();
+		$scope.vessels = [];
+		$scope.loadVessels();
 	} ]);
 
 	app.controller('TeaController', ['$http', '$log', '$scope', function($http, $log, $scope){
