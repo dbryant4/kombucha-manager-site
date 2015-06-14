@@ -143,7 +143,7 @@
 			   		'Content-Type': 'application/json'
 			 	},
 			 	data: {
-					tea: $scope.newBatch.tea,
+					tea: [$scope.newBatch.tea],
 				    tea_volume: $scope.newBatch.tea_volume,
 				    sugar_volume: $scope.newBatch.sugar_volume,
 				    brew_volume: $scope.newBatch.brew_volume,
