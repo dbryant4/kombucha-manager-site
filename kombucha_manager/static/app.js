@@ -1,8 +1,11 @@
 (function(){
 	var app = angular.module('kombucha_manager', ['angular-loading-bar', 'smart-table'])
-	.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+	.config(['cfpLoadingBarProvider', '$httpProvider', function(cfpLoadingBarProvider, $httpProvider) {
     	cfpLoadingBarProvider.includeSpinner = false;
+    	$httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    	$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
   	}]);
+
 
 	app.directive('loginForm', function(){
 		return {
@@ -93,7 +96,7 @@
 		};
 	});
 
-	app.controller('BatchController', ['$scope', '$http', '$log', function($scope, $http, $log){
+	app.controller('BatchController', ['$filter', '$scope', '$http', '$log', function($filter, $scope, $http, $log){
 		$scope.loadBatches = function(url){
 			url = url || "/api/v1/batches/";
 			$http.get(url)
@@ -132,10 +135,36 @@
 	    	});
     	};
 
-		this.addBatch = function(){
-			$log.debug($scope);
+		$scope.addBatch = function(){
+			var req = {
+			 	method: 'POST',
+			 	url: '/api/v1/batches/',
+			 	headers: {
+			   		'Content-Type': 'application/json'
+			 	},
+			 	data: {
+					tea: $scope.newBatch.tea,
+				    tea_volume: $scope.newBatch.tea_volume,
+				    sugar_volume: $scope.newBatch.sugar_volume,
+				    brew_volume: $scope.newBatch.brew_volume,
+				    scoby_count: $scope.newBatch.scoby_count,
+				    brew_date: $filter('date')($scope.newBatch.brew_date, 'yyyy-MM-dd'),
+				    comments: "",
+				    vessel: $scope.newBatch.vessel
+				},
+			}
+			$http(req).
+			success(function(data, status, headers, config) {
+				$log.debug(data);
+				$('#addBatchModal').modal('hide');
+				$scope.loadBatches();
+  			}).
+  			error(function(data, status, headers, config) {
+  				$log.debug(data);
+			});
 		};
 
+		$scope.newBatch = {};
 		$scope.batches = [];
 		$scope.loadBatches();
 	} ]);
