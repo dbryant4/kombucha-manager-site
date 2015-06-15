@@ -1,5 +1,5 @@
 (function(){
-	var app = angular.module('kombucha_manager', ['batches', 'bottles', 'vessels', 'teas', 'panels', 'angular-loading-bar', 'smart-table'])
+	var app = angular.module('kombucha_manager', ['batches', 'bottles', 'vessels', 'teas', 'panels', 'sizes', 'flavors', 'angular-loading-bar', 'smart-table'])
 	.config(['cfpLoadingBarProvider', '$httpProvider', function(cfpLoadingBarProvider, $httpProvider) {
     	cfpLoadingBarProvider.includeSpinner = false;
     	$httpProvider.defaults.xsrfCookieName = 'csrftoken';
@@ -58,9 +58,4 @@
 			});
 		};
 	} ]);
-
-	
-
-
-	
 })();

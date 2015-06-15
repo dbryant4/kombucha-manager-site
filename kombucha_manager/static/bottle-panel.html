@@ -1,5 +1,9 @@
 						<div ng-controller="BottleController as bottleCtrl">
 							<h4>Bottles</h4>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBottleModal">
+								Add Bottle
+							</button>
+							<add-bottle-form></add-bottle-form>
 							<table class="table table-striped" st-table="displayedBottlesCollection" st-safe-src="bottles">
 								<thead>
 									<tr>
