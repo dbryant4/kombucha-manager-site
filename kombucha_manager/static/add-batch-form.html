@@ -13,7 +13,7 @@
 									<div class="modal-body">
 										<div class="form-group" ng-controller="VesselController as vesselCtrl">
 											<label for="vessel">Vessel:</label>
-											<select class="form-control" ng-model="newBatch.vessel" ng-options="item.url as item.name for item in vessels track by item.url" required="true" >
+											<select class="form-control" ng-model="newBatch.vessel" ng-options="item.url as item.name for item in vessels|orderBy:'name' track by item.url" required="true" >
 												<option value="">-- choose vessel --</option>
 											</select>
 										</div>

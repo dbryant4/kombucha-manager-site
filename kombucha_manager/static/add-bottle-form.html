@@ -13,19 +13,19 @@
 									<div class="modal-body">
 										<div class="form-group" ng-controller="BatchController as batchCtrl">
 											<label for="flavor">Batch:</label>
-											<select class="form-control" ng-model="newBottle.batch" ng-options="item.url as item.id for item in batches track by item.url" required="true" >
+											<select class="form-control" ng-model="newBottle.batch" ng-options="item.url as item.id for item in batches|orderBy:'id' track by item.url" required="true" >
 												<option value="">-- choose batch --</option>
 											</select>
 										</div>
 										<div class="form-group" ng-controller="SizeController as sizeCtrl">
 											<label for="size">Size:</label>
-											<select class="form-control" ng-model="newBottle.size" ng-options="item.url as item.size for item in sizes track by item.url" required="true" >
+											<select class="form-control" ng-model="newBottle.size" ng-options="item.url as item.size for item in sizes|orderBy:'size' track by item.url" required="true" >
 												<option value="">-- choose size (oz) --</option>
 											</select>
 										</div>
 										<div class="form-group" ng-controller="FlavorController as flavorCtrl">
 											<label for="flavor">Flavor:</label>
-											<select class="form-control" ng-model="newBottle.flavor" ng-options="item.url as item.name for item in flavors track by item.url" required="true" >
+											<select class="form-control" ng-model="newBottle.flavor" ng-options="item.url as item.name for item in flavors|orderBy:'name' track by item.url" required="true" >
 												<option value="">-- choose flavor --</option>
 											</select>
 										</div>
