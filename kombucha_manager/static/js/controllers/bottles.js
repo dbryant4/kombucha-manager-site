@@ -21,7 +21,7 @@
 	    				bottle.size = response;
 	    			})
 	    		});
-	    		$scope.bottles.concat(bottles);
+	    		$scope.bottles = $scope.bottles.concat(bottles);
 	    		if (response.next != null){
 					$scope.loadBottles(response.next);
 				}
