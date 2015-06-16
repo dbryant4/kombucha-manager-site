@@ -87,7 +87,7 @@ class BottleSizeSerializer(serializers.HyperlinkedModelSerializer):
         model = BottleSize
 
 class BottleSerializer(serializers.HyperlinkedModelSerializer):
-    size = BottleSizeSerializer()
+    #size = BottleSizeSerializer()
 
     class Meta:
         model = Bottle

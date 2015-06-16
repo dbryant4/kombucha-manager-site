@@ -10,7 +10,7 @@
 	app.controller('BatchController', ['$filter', '$scope', '$http', '$log', function($filter, $scope, $http, $log){
 		$scope.loadBatches = function(url){
 			url = url || "/api/v1/batches/";
-			$http.get(url)
+			$scope.batchLoader = $http.get(url)
 			.success(function(response) {
 
 	    		batches = response['results'];
@@ -18,7 +18,7 @@
 	    			/* Get tea objects*/
 	    			var new_teas = [];
 	    			batch['tea'].forEach(function(tea){
-						$http.get(tea)
+						$scope.batchLoader = $http.get(tea)
 	    				.success(function(response){					
 	    					new_teas.push(response);
 	    				});
@@ -26,7 +26,7 @@
 	    			batch['tea'] = new_teas;
 
 	    			/* Get vessel objects */
-	    			$http.get(batch['vessel'])
+	    			$scope.batchLoader = $http.get(batch['vessel'])
 	    			.success(function(response){	
 	    				batch['vessel'] = response;
 	    			})
@@ -64,7 +64,7 @@
 				    vessel: $scope.newBatch.vessel
 				},
 			}
-			$http(req).
+			$scope.batchLoader = $http(req).
 			success(function(data, status, headers, config) {
 				$log.debug(data);
 				$('#addBatchModal').modal('hide');

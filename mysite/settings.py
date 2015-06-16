@@ -77,17 +77,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -120,13 +109,13 @@ STATICFILES_FINDERS = (
     )
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'static')
-#BOWER_PATH = "/home/vagrant/node_modules/bower/bin/bower"
 BOWER_INSTALLED_APPS = (
     "jquery#2.1.4",
     "angular#1.4.0",
     "bootstrap#3.3.4",
     "angular-loading-bar#0.7.1",
-    "angular-smart-table#2.0.3"
+    "angular-smart-table#2.0.3",
+    "angular-busy#4.1.3"
     )
 
 
@@ -140,6 +129,7 @@ REST_FRAMEWORK = {
 }
 
 # Parse database configuration from $DATABASE_URL
+DATABASES = {}
 DATABASES['default'] =  dj_database_url.config()
 
 # Enable Connection Pooling

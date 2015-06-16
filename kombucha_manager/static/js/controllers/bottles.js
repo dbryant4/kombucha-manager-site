@@ -8,12 +8,20 @@
 		};
 	});
 
-	app.controller('BottleController', ['$http', '$log', '$scope', function($http, $log, $scope){
+	app.controller('BottleController', ['$filter', '$http', '$log', '$scope', function($filter, $http, $log, $scope){
 		$scope.loadBottles = function(url){
 			url = url || "/api/v1/bottles/";
-			$http.get(url)
+			$scope.bottleLoader = $http.get(url)
 			.success(function(response) {
-	    		$scope.bottles = $scope.bottles.concat(response.results);
+				bottles = response.results;
+	    		
+	    		bottles.forEach(function(bottle){
+	    			$scope.bottleLoader = $http.get(bottle.size)
+	    			.success(function(response){	
+	    				bottle.size = response;
+	    			})
+	    		});
+	    		$scope.bottles = $scope.bottles.concat(bottles);
 	    		if (response.next != null){
 					$scope.loadBottles(response.next);
 				}
@@ -38,12 +46,12 @@
 			 	data: {
 					comment: "",
 					flavors: [$scope.newBottle.flavor],
-					bottle_date: $scope.newBottle.bottle_date,
+					bottle_date: $filter('date')($scope.newBottle.bottle_date, 'yyyy-MM-dd'),
 					size: $scope.newBottle.size,
-					batch: $scope.newBotttle.batch,
+					batch: $scope.newBottle.batch,
 				},
 			}
-			$http(req)
+			$scope.bottleLoader = $http(req)
 			.success(function(data, status, headers, config) {
 				$('#addBottleModal').modal('hide');
 				$scope.bottles = [];
