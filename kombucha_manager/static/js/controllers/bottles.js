@@ -11,17 +11,17 @@
 	app.controller('BottleController', ['$filter', '$http', '$log', '$scope', function($filter, $http, $log, $scope){
 		$scope.loadBottles = function(url){
 			url = url || "/api/v1/bottles/";
-			$scope.bottleLoader = $http.get(url)
+			$http.get(url)
 			.success(function(response) {
 				bottles = response.results;
 	    		
 	    		bottles.forEach(function(bottle){
-	    			$scope.bottleLoader = $http.get(bottle.size)
+	    			$http.get(bottle.size)
 	    			.success(function(response){	
 	    				bottle.size = response;
 	    			})
 	    		});
-	    		$scope.bottles = $scope.bottles.concat(bottles);
+	    		$scope.bottles.concat(bottles);
 	    		if (response.next != null){
 					$scope.loadBottles(response.next);
 				}
@@ -51,7 +51,7 @@
 					batch: $scope.newBottle.batch,
 				},
 			}
-			$scope.bottleLoader = $http(req)
+			$http(req)
 			.success(function(data, status, headers, config) {
 				$('#addBottleModal').modal('hide');
 				$scope.bottles = [];

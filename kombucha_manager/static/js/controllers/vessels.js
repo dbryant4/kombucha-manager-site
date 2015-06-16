@@ -5,7 +5,7 @@
 		$scope.loadVessels = function(url){
 			url = url || "/api/v1/vessels/";
 			$scope.vessels = [];
-			$scope.vesselLoader = $http.get(url)
+			$http.get(url)
 			.success(function(response) {
 				$scope.vessels = $scope.vessels.concat(response.results);
 				if (response.next != null){

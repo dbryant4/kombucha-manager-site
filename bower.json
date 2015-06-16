@@ -14,11 +14,10 @@
   ],
   "dependencies": {
     "at-table": "~1.0.4",
-    "angular-smart-table": "~2.0.3",
+    "angular-smart-table": "~2.1.0",
     "jquery": "~2.1.4",
-    "angular": "~1.4.0",
+    "angular": "~1.3",
     "bootstrap": "~3.3.4",
-    "angular-loading-bar": "~0.7.1",
-    "angular-busy": "~4.1.3"
+    "angular-loading-bar": "~0.7.1"
   }
 }

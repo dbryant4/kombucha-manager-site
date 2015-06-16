@@ -110,14 +110,11 @@ STATICFILES_FINDERS = (
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'static')
 BOWER_INSTALLED_APPS = (
-    'angular-loading-bar#0.7.1',
-    'angular#1.4.0',
-    'angular-smart-table#2.0.3',
-    'angular-cookies#1.4.0',
-    'angular-busy#4.1.3',
-    'bootstrap#3.3.4',
-    'jquery#2.1.4',
-    'angular-animate#1.3.16')
+    "jquery#2.1.4",
+    "angular#1.4.0",
+    "bootstrap#3.3.4",
+    "angular-loading-bar#0.7.1",
+    "angular-smart-table#2.0.3")
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
