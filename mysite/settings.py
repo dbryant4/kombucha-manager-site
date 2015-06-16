@@ -105,10 +105,10 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    "djangobower.finders.BowerFinder",
+    'djangobower.finders.BowerFinder',
     )
 
-BOWER_COMPONENTS_ROOT = STATIC_ROOT
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'static')
 BOWER_INSTALLED_APPS = (
     "jquery#2.1.4",
     "angular#1.4.0",
