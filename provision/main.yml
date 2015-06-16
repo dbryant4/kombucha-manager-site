@@ -88,9 +88,6 @@
     db_pass: br00klyn
     database_url: 'postgres://{{db_user}}:{{db_pass}}@127.0.0.1/{{db_name}}'
   tasks:
-    - name: create /home/vagrant/components
-      file: path=/home/vagrant/components state=directory
-
     - name: kill gunicorn
       shell: "pkill -9 gunicorn"
       register: kill_gunicorn
