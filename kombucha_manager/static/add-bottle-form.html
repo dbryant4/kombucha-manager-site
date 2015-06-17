@@ -13,7 +13,7 @@
 									<div class="modal-body">
 										<div class="form-group" ng-controller="BatchController as batchCtrl">
 											<label for="flavor">Batch:</label>
-											<select class="form-control" ng-model="newBottle.batch" ng-options="item.url as item.id for item in batches|orderBy:'id' track by item.url" required="true" >
+											<select class="form-control" ng-model="newBottle.batch" ng-options="item.url as item.id for item in batches|orderBy:'-id' track by item.url" required="true" >
 												<option value="">-- choose batch --</option>
 											</select>
 										</div>
