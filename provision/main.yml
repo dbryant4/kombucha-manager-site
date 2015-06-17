@@ -24,6 +24,9 @@
         - gcc
         - make
         - nodejs
+        - libmemcached-devel
+        - zlib-devel
+        - memcached
 
     - name: install pip
       get_url: url=https://bootstrap.pypa.io/get-pip.py dest=/tmp/get-pip.py mode=0755
@@ -47,6 +50,9 @@
 
     - name: install bower
       npm: name=bower global=yes
+      async: 1000
+      poll: 0
+      register: bower_sleeper
 
     - command: "/bin/postgresql-setup initdb creates=/var/lib/pgsql/data/pg_hba.conf"
       ignore_errors: true
@@ -58,6 +64,13 @@
         replace: 'host   all  all    127.0.0.1/32    trust'
 
     - service: name=postgresql state=started enabled=true
+    - service: name=memcached state=started enabled=true
+
+    - name: wait for bower install to finish
+      async_status: jid={{ bower_sleeper.ansible_job_id }}
+      register: job_result
+      until: job_result.finished is defined and job_result.finished
+      retries: 30
 
 - hosts: all
   sudo: yes

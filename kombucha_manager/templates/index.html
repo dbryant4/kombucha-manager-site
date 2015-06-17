@@ -2,11 +2,14 @@
 <html ng-app="kombucha_manager">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		{% load compress %}
 		{% load static %}
+		{% compress css inline%}
 		<link rel="stylesheet" href="{% static 'css/site.css' %}">
 		<link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
 		<link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap-theme.min.css' %}">
 		<link rel="stylesheet" href="{% static 'angular-loading-bar/build/loading-bar.css' %}">
+		{% endcompress %}
 	</head>
 	<body>
 		<login-form></login-form>
@@ -58,6 +61,8 @@
 				</div>
 			</div>
 		</section>
+		{% load compress %}
+		{% compress js%}
 		<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'angular/angular.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'angular-smart-table/dist/smart-table.min.js' %}"></script>
@@ -72,5 +77,6 @@
 		<script type="text/javascript" src="{% static 'js/controllers/authentication.js' %}"></script>
 		<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
 		<script src="{% static 'angular-loading-bar/build/loading-bar.min.js' %}"></script>
+		{% endcompress %}
 	</body>
 </html>
