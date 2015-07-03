@@ -14,4 +14,5 @@ Vagrant.configure(2) do |config|
     ENV['ANSIBLE_ROLES_PATH'] = '..'
     ansible.verbose = "v"
   end
+  config.vm.provision "shell", inline: "/tmp/run_tests.sh"
 end
