@@ -123,3 +123,6 @@
 
     - name: start gnuicorn
       shell: "DATABASE_URL='{{ database_url }}' gunicorn mysite.wsgi --log-file /tmp/gunicorn.log -D --pythonpath=/vagrant/ --bind 0.0.0.0:8000"
+
+    - name: place test runner script
+      template: src=templates/run_tests.sh.j2 dest=/tmp/run_tests.sh mode=0755
