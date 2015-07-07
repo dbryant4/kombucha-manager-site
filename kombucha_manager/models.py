@@ -58,6 +58,7 @@ class Batch(models.Model):
     scoby_count = models.IntegerField(default=1)
     brew_date = models.DateField('date of first fermentation', default=datetime.now().today)
     comments = models.TextField(null=True, blank=True)
+    discarded = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = "batches"

@@ -4,6 +4,7 @@ from django.contrib.auth.models import User, Group
 
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
+from rest_framework.decorators import detail_route
 
 from kombucha_manager.serializers import *
 from kombucha_manager.models import *
@@ -84,6 +85,17 @@ class BatchViewSet(viewsets.ModelViewSet):
         vessels = Vessel.objects.filter(organization=organization)
         batches = Batch.objects.filter(vessel__in=vessels)
         return batches
+
+    @detail_route(methods=['post'])
+    def discard(self, request, pk=None):
+        """
+        This view method discards a batches
+        """
+
+        batch = Batch.objects.all().filter(pk=pk).first()
+        batch.discarded = True
+        batch.save()
+        return Response({'result': 0, 'message':'Batch %s discarded' % batch.id })
 
 
 class SourceViewSet(viewsets.ModelViewSet):

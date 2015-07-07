@@ -75,6 +75,7 @@ class BatchSerializer(serializers.HyperlinkedModelSerializer):
                   'brew_date',
                   'comments',
                   'vessel',
+                  'discarded'
                  )
     
 

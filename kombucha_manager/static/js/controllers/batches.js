@@ -76,6 +76,27 @@
 			});
 		};
 
+		$scope.discardBatch = function(id){
+			$log.debug('here');
+			var req = {
+			 	method: 'POST',
+			 	url: '/api/v1/batches/' + id + '/discard/',
+			 	headers: {
+			   		'Content-Type': 'application/json'
+			 	},
+			}
+			$http(req).
+			success(function(data, status, headers, config) {
+				$log.debug(data);
+				//$('#addBatchModal').modal('hide');
+				$scope.batches = [];
+				$scope.loadBatches();
+  			}).
+  			error(function(data, status, headers, config) {
+  				$log.debug(data);
+			});
+		};
+
 		$scope.newBatch = {};
 		$scope.batches = [];
 		$scope.loadBatches();

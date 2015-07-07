@@ -7,6 +7,7 @@
 							<table class="table table-striped" st-table="displayedBatchCollection" st-safe-src="batches">
 								<thead>
 									<tr>
+										<th>&nbsp;</th>
 										<th st-sort="id" st-sort-default="reverse">ID</th>
 										<th st-sort="brew_date">Brew Date</th>
 										<th st-sort="teas">Teas</th>
@@ -14,8 +15,19 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr ng-repeat="batch in displayedBatchCollection">
-										<td>{{ batch.id }}</td>
+									<tr ng-repeat-start="batch in displayedBatchCollection" ng-click="batch.expanded = !batch.expanded">
+										<td>
+											<button class="btn btn-default btn-xs" ng-if="batch.expanded">
+												<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+											</button>
+              								<button class="btn btn-default btn-xs" ng-if="!batch.expanded">
+              									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              								</button>
+										</td>
+										<td>
+											{{ batch.id }}
+											<span class="label label-warning" ng-show="batch.discarded">Discarded</span>
+										</td>
 										<td>{{ batch.brew_date | date }}</td>
 										<td>
 											<span ng-repeat="tea in batch.tea">
@@ -32,6 +44,51 @@
 											{{ batch.vessel.name }}
 										</td>
 									</tr>
+									<tr ng-if="batch.expanded" ng-repeat-end="">
+            							<td colspan="5">
+            								<div class="well well-sm">
+            									<div class="row">
+	            									<div class="col-md-10">
+	            										<ul class="list-group">
+														  <li class="list-group-item">
+														  	Brew Volume (gallons): {{ batch.brew_volume }}
+														  </li>
+														  <li class="list-group-item">
+														  	Tea Volume (gallons): {{ batch.tea_volume }}
+														  </li>
+														  <li class="list-group-item">
+														  	Sugar Volume (cups): {{ batch.sugar_volume }}
+														  </li>
+														  <li class="list-group-item">
+														  	Scoby Count: {{ batch.scoby_count }}
+														  </li>
+														  <li class="list-group-item">
+														  	Comments: {{ batch.comments }}
+														  </li>
+														</ul>
+													</div>
+	  												<div class="col-md-2">
+	  													<div class="dropdown">
+														  <button class="btn btn-default dropdown-toggle" type="button" id="moduleOptions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+														  	<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+														    Options
+														    <span class="caret"></span>
+														  </button>
+														  <ul class="dropdown-menu" aria-labelledby="moduleOptions">
+														    <li ng-class="{ 'disabled':batch.discarded }">
+														    	<a ng-href="#" ng-click="discardBatch(batch.id)">
+														    		<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+														    		Discard Batch
+														    	</a>
+														    </li>
+														  </ul>
+														</div>
+	            									</div>
+	            									<span class="label label-warning" ng-show="batch.discarded">Discarded</span>
+            									</div>
+            								</div>
+            							</td>
+          							</tr>
 								</tbody>
 								<tfoot>
 									<tr>
