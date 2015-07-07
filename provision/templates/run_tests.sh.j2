@@ -1,0 +1,7 @@
+#!/bin/bash
+# This script kicks off Django tests and is managed by Ansible
+
+export DATABASE_URL='{{ database_url }}'
+
+cd /vagrant
+python ./manage.py test
