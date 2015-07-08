@@ -7,7 +7,7 @@
 		};
 	});
 
-	app.controller('BatchController', ['$filter', '$scope', '$http', '$log', function($filter, $scope, $http, $log){
+	app.controller('BatchController', ['$filter', '$scope', '$http', '$window', '$log', function($filter, $scope, $http, $window, $log){
 		$scope.loadBatches = function(url){
 			url = url || "/api/v1/batches/";
 			$http.get(url)
@@ -77,7 +77,6 @@
 		};
 
 		$scope.discardBatch = function(id){
-			$log.debug('here');
 			var req = {
 			 	method: 'POST',
 			 	url: '/api/v1/batches/' + id + '/discard/',
@@ -88,13 +87,34 @@
 			$http(req).
 			success(function(data, status, headers, config) {
 				$log.debug(data);
-				//$('#addBatchModal').modal('hide');
-				$scope.batches = [];
-				$scope.loadBatches();
   			}).
   			error(function(data, status, headers, config) {
-  				$log.debug(data);
+  				$window.alert("Error " + status + " while saving " + field + ". Your changes were NOT saved.");
+  				$log.debug(data)
+  				$log.debug(status)
 			});
+		};
+
+		$scope.patchBatch = function(url, field, value){
+			data = {};
+			data[field] = value;
+			var req = {
+			 	method: 'PATCH',
+			 	url: url,
+			 	headers: {
+			   		'Content-Type': 'application/json'
+			 	},
+			 	data: data,
+			}
+			$http(req).
+			success(function(data, status, headers, config) {
+				$log.debug(data);
+  			}).
+  			error(function(data, status, headers, config) {
+  				$window.alert("Error " + status + " while saving " + field + ". Your changes were NOT saved.");
+  				$log.debug(data)
+  				$log.debug(status)
+  			});
 		};
 
 		$scope.newBatch = {};
