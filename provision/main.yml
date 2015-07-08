@@ -110,6 +110,9 @@
     - name: Perform Django Bower Install
       shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py bower install --no-color"
 
+    - name: Compress Static Files
+      shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py compress --force"
+
     - name: Perform Django Static File Collection
       shell: "DATABASE_URL='{{ database_url }}' /usr/bin/python /vagrant/manage.py collectstatic --no-color --noinput"
 
