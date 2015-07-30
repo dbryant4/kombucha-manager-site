@@ -97,6 +97,15 @@ class BatchViewSet(viewsets.ModelViewSet):
         batch.save()
         return Response({'result': 0, 'message':'Batch %s discarded' % batch.id })
 
+    @detail_route(methods=['get'])
+    def bottles(self, request, pk=None):
+        """
+        Return bottles associated with a batch
+        """
+
+        bottles = Batch.objects.all().filter(pk=pk).first().bottles
+        serializer = BottleSerializer(bottles, context={'request': request}, many=True)
+        return Response(serializer.data)
 
 class SourceViewSet(viewsets.ModelViewSet):
     """
