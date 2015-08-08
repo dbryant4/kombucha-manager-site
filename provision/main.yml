@@ -40,7 +40,7 @@
     - name: install requirements
       pip: "requirements=/vagrant/requirements.txt"
       args:
-        extra_args: --find-links=/vagrant/.wheelhouse 
+        extra_args: --find-links=/vagrant/provision/files/.wheelhouse 
 
     - name: wait for yum install to finish
       async_status: jid={{ yum_sleeper.ansible_job_id }}
