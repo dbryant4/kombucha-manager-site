@@ -1,2185 +1,543 @@
 [
 {
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "logentry",
-        "app_label": "admin"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "permission",
-        "app_label": "auth"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "group",
-        "app_label": "auth"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "user",
-        "app_label": "auth"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "contenttype",
-        "app_label": "contenttypes"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "session",
-        "app_label": "sessions"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "organization",
-        "app_label": "kombucha_manager"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "userprofile",
-        "app_label": "kombucha_manager"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "vessel",
-        "app_label": "kombucha_manager"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "source",
-        "app_label": "kombucha_manager"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "teatype",
-        "app_label": "kombucha_manager"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "tea",
-        "app_label": "kombucha_manager"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "batch",
-        "app_label": "kombucha_manager"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "flavor",
-        "app_label": "kombucha_manager"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "bottle",
-        "app_label": "kombucha_manager"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "fields": {
-        "model": "bottlesize",
-        "app_label": "kombucha_manager"
-    }
-},
-{
-    "pk": "10gvrc13bp037ezc3ek7kyjogjfjave4",
-    "model": "sessions.session",
-    "fields": {
-        "session_data": "Y2JiMzY2YmE3NGM5ZjBiZjg5NDk3MTdhODVkOTQ4ODkwNGFhNTUwMTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjYmIzNWY1NjM2MmM4YWViYjI0OWE5M2UwZDAxZjNmYjY4YzY1MTIwIn0=",
-        "expire_date": "2015-05-27T22:30:32.557Z"
-    }
-},
-{
-    "pk": "5my7h7e1ngz107r81yrclxc6eqxiij05",
-    "model": "sessions.session",
-    "fields": {
-        "session_data": "ZGQzMWI4YTFjZGExZDU0NWE3ZmI5MWNlYmUzN2ZjNzBhMjBlZjQ3Zjp7Il9hdXRoX3VzZXJfaGFzaCI6ImNiYjM1ZjU2MzYyYzhhZWJiMjQ5YTkzZTBkMDFmM2ZiNjhjNjUxMjAiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
-        "expire_date": "2015-05-18T03:03:11.708Z"
-    }
-},
-{
-    "pk": "ik5os135sxuc7yvvb7tybagcl6nfsyn7",
-    "model": "sessions.session",
-    "fields": {
-        "session_data": "MWI4YjEwZGIyMGI4OGQ5NTMxNzJkNzJmZDFhMzYwN2I4NzQ3YjBjMzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiJjYmIzNWY1NjM2MmM4YWViYjI0OWE5M2UwZDAxZjNmYjY4YzY1MTIwIn0=",
-        "expire_date": "2015-06-02T00:54:34.467Z"
-    }
-},
-{
-    "pk": 1,
-    "model": "kombucha_manager.organization",
-    "fields": {
-        "name": "test org"
-    }
-},
-{
-    "pk": 2,
-    "model": "kombucha_manager.organization",
-    "fields": {
-        "name": "Ben's Kombucha"
-    }
-},
-{
-    "pk": 1,
-    "model": "kombucha_manager.vessel",
-    "fields": {
-        "name": "Clear",
-        "organization": 2
-    }
-},
-{
-    "pk": 2,
-    "model": "kombucha_manager.vessel",
-    "fields": {
-        "name": "Blue",
-        "organization": 2
-    }
-},
-{
-    "pk": 3,
-    "model": "kombucha_manager.vessel",
-    "fields": {
-        "name": "Green",
-        "organization": 2
-    }
-},
-{
-    "pk": 1,
-    "model": "kombucha_manager.source",
-    "fields": {
-        "name": "Kombucha Brooklyn",
-        "source_url": "http://www.kombuchabrooklyn.com/"
-    }
-},
-{
-    "pk": 2,
-    "model": "kombucha_manager.source",
-    "fields": {
-        "name": "Dupont Market",
-        "source_url": ""
-    }
-},
-{
-    "pk": 3,
-    "model": "kombucha_manager.source",
-    "fields": {
-        "name": "Yes! Organic Market",
-        "source_url": "http://www.yesorganicmarket.com/"
-    }
-},
-{
-    "pk": 4,
-    "model": "kombucha_manager.source",
-    "fields": {
-        "name": "Bloomingdale Market",
-        "source_url": ""
-    }
-},
-{
-    "pk": 1,
-    "model": "kombucha_manager.teatype",
-    "fields": {
-        "name": "Green"
-    }
-},
-{
-    "pk": 2,
-    "model": "kombucha_manager.teatype",
-    "fields": {
-        "name": "Black"
-    }
-},
-{
-    "pk": 3,
-    "model": "kombucha_manager.teatype",
-    "fields": {
-        "name": "White"
-    }
-},
-{
-    "pk": 1,
-    "model": "kombucha_manager.tea",
-    "fields": {
-        "comments": "",
-        "tea_types": [
-            1
-        ],
-        "name": "House",
-        "sources": [
-            1
-        ]
-    }
-},
-{
-    "pk": 2,
-    "model": "kombucha_manager.tea",
-    "fields": {
-        "comments": "",
-        "tea_types": [
-            3
-        ],
-        "name": "House",
-        "sources": [
-            1
-        ]
-    }
-},
-{
-    "pk": 3,
-    "model": "kombucha_manager.tea",
-    "fields": {
-        "comments": "",
-        "tea_types": [
-            1,
-            2,
-            3
-        ],
-        "name": "House",
-        "sources": [
-            1
-        ]
-    }
-},
-{
-    "pk": 1,
-    "model": "kombucha_manager.batch",
-    "fields": {
-        "vessel": 1,
-        "scoby_count": 2,
-        "comments": "",
-        "brew_volume": "1.00",
-        "tea": [
-            3
-        ],
-        "tea_volume": "5.0",
-        "brew_date": "2015-04-22",
-        "sugar_volume": "1.00"
-    }
-},
-{
-    "pk": 2,
-    "model": "kombucha_manager.batch",
-    "fields": {
-        "vessel": 3,
-        "scoby_count": 1,
-        "comments": "",
-        "brew_volume": "1.00",
-        "tea": [
-            1
-        ],
-        "tea_volume": "12.0",
-        "brew_date": "2015-05-01",
-        "sugar_volume": "1.00"
-    }
-},
-{
-    "pk": 3,
-    "model": "kombucha_manager.batch",
-    "fields": {
-        "vessel": 3,
-        "scoby_count": 1,
-        "comments": "",
-        "brew_volume": "1.00",
-        "tea": [
-            1
-        ],
-        "tea_volume": "12.0",
-        "brew_date": "2015-05-12",
-        "sugar_volume": "1.00"
-    }
-},
-{
-    "pk": 4,
-    "model": "kombucha_manager.batch",
-    "fields": {
-        "vessel": 2,
-        "scoby_count": 1,
-        "comments": "",
-        "brew_volume": "1.00",
-        "tea": [
-            2
-        ],
-        "tea_volume": "12.0",
-        "brew_date": "2015-05-12",
-        "sugar_volume": "1.00"
-    }
-},
-{
-    "pk": 1,
-    "model": "kombucha_manager.flavor",
-    "fields": {
-        "comments": "",
-        "name": "Spearmint",
-        "source": [
-            3
-        ]
-    }
-},
-{
-    "pk": 2,
-    "model": "kombucha_manager.flavor",
-    "fields": {
-        "comments": "",
-        "name": "Blackberry",
-        "source": [
-            2
-        ]
-    }
-},
-{
-    "pk": 3,
-    "model": "kombucha_manager.flavor",
-    "fields": {
-        "comments": "",
-        "name": "Blackberry (Frozen)",
-        "source": [
-            2
-        ]
-    }
-},
-{
-    "pk": 4,
-    "model": "kombucha_manager.flavor",
-    "fields": {
-        "comments": "",
-        "name": "Ginger",
-        "source": [
-            3
-        ]
-    }
-},
-{
-    "pk": 5,
-    "model": "kombucha_manager.flavor",
-    "fields": {
-        "comments": "",
-        "name": "Pear",
-        "source": [
-            3
-        ]
-    }
-},
-{
-    "pk": 6,
-    "model": "kombucha_manager.flavor",
-    "fields": {
-        "comments": "",
-        "name": "Strawberry",
-        "source": [
-            4
-        ]
-    }
-},
-{
-    "pk": 7,
-    "model": "kombucha_manager.flavor",
-    "fields": {
-        "comments": "",
-        "name": "Raspberry",
-        "source": [
-            1
-        ]
-    }
-},
-{
-    "pk": 8,
-    "model": "kombucha_manager.flavor",
-    "fields": {
-        "comments": "",
-        "name": "Peppermint",
-        "source": [
-            2
-        ]
-    }
-},
-{
-    "pk": 1,
-    "model": "kombucha_manager.bottlesize",
-    "fields": {
-        "size": 32
-    }
-},
-{
-    "pk": 2,
-    "model": "kombucha_manager.bottlesize",
-    "fields": {
-        "size": 16
-    }
-},
-{
-    "pk": 3,
-    "model": "kombucha_manager.bottlesize",
-    "fields": {
-        "size": 14
-    }
-},
-{
-    "pk": 4,
-    "model": "kombucha_manager.bottlesize",
-    "fields": {
-        "size": 24
-    }
-},
-{
-    "pk": 1,
-    "model": "kombucha_manager.bottle",
-    "fields": {
-        "comments": "",
-        "size": 1,
-        "batch": 1,
-        "flavors": [
-            1
-        ],
-        "bottle_date": "2015-05-01"
-    }
-},
-{
-    "pk": 2,
-    "model": "kombucha_manager.bottle",
-    "fields": {
-        "comments": "",
-        "size": 2,
-        "batch": 1,
-        "flavors": [
-            2
-        ],
-        "bottle_date": "2015-05-01"
-    }
-},
-{
-    "pk": 3,
-    "model": "kombucha_manager.bottle",
-    "fields": {
-        "comments": "",
-        "size": 1,
-        "batch": 2,
-        "flavors": [
-            3,
-            1
-        ],
-        "bottle_date": "2015-05-12"
-    }
-},
-{
-    "pk": 4,
-    "model": "kombucha_manager.bottle",
-    "fields": {
-        "comments": "",
-        "size": 1,
-        "batch": 2,
-        "flavors": [
-            4,
-            5
-        ],
-        "bottle_date": "2015-05-12"
-    }
-},
-{
-    "pk": 5,
-    "model": "kombucha_manager.bottle",
-    "fields": {
-        "comments": "",
-        "size": 1,
-        "batch": 3,
-        "flavors": [
-            4
-        ],
-        "bottle_date": "2015-05-18"
-    }
-},
-{
-    "pk": 6,
-    "model": "kombucha_manager.bottle",
-    "fields": {
-        "comments": "",
-        "size": 2,
-        "batch": 3,
-        "flavors": [
-            1
-        ],
-        "bottle_date": "2015-05-18"
-    }
-},
-{
-    "pk": 7,
-    "model": "kombucha_manager.bottle",
-    "fields": {
-        "comments": "",
-        "size": 1,
-        "batch": 3,
-        "flavors": [
-            6
-        ],
-        "bottle_date": "2015-05-18"
-    }
-},
-{
-    "pk": 8,
-    "model": "kombucha_manager.bottle",
-    "fields": {
-        "comments": "",
-        "size": 1,
-        "batch": 4,
-        "flavors": [
-            4
-        ],
-        "bottle_date": "2015-05-18"
-    }
-},
-{
-    "pk": 9,
-    "model": "kombucha_manager.bottle",
-    "fields": {
-        "comments": "",
-        "size": 1,
-        "batch": 4,
-        "flavors": [
-            3
-        ],
-        "bottle_date": "2015-05-18"
-    }
-},
-{
-    "pk": 10,
-    "model": "kombucha_manager.bottle",
-    "fields": {
-        "comments": "",
-        "size": 3,
-        "batch": 4,
-        "flavors": [
-            7
-        ],
-        "bottle_date": "2015-05-18"
-    }
-},
-{
-    "pk": 11,
-    "model": "kombucha_manager.bottle",
-    "fields": {
-        "comments": "",
-        "size": 1,
-        "batch": 4,
-        "flavors": [
-            3,
-            8
-        ],
-        "bottle_date": "2015-05-25"
-    }
-},
-{
-    "pk": 12,
-    "model": "kombucha_manager.bottle",
-    "fields": {
-        "comments": "",
-        "size": 1,
-        "batch": 4,
-        "flavors": [
-            4
-        ],
-        "bottle_date": "2015-05-25"
-    }
-},
-{
-    "pk": 13,
-    "model": "kombucha_manager.bottle",
-    "fields": {
-        "comments": "",
-        "size": 4,
-        "batch": 4,
-        "flavors": [
-            1
-        ],
-        "bottle_date": "2015-05-25"
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_logentry",
-        "name": "Can add log entry",
-        "content_type": [
-            "admin",
-            "logentry"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_logentry",
-        "name": "Can change log entry",
-        "content_type": [
-            "admin",
-            "logentry"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_logentry",
-        "name": "Can delete log entry",
-        "content_type": [
-            "admin",
-            "logentry"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_permission",
-        "name": "Can add permission",
-        "content_type": [
-            "auth",
-            "permission"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_permission",
-        "name": "Can change permission",
-        "content_type": [
-            "auth",
-            "permission"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_permission",
-        "name": "Can delete permission",
-        "content_type": [
-            "auth",
-            "permission"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_group",
-        "name": "Can add group",
-        "content_type": [
-            "auth",
-            "group"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_group",
-        "name": "Can change group",
-        "content_type": [
-            "auth",
-            "group"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_group",
-        "name": "Can delete group",
-        "content_type": [
-            "auth",
-            "group"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_user",
-        "name": "Can add user",
-        "content_type": [
-            "auth",
-            "user"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_user",
-        "name": "Can change user",
-        "content_type": [
-            "auth",
-            "user"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_user",
-        "name": "Can delete user",
-        "content_type": [
-            "auth",
-            "user"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_contenttype",
-        "name": "Can add content type",
-        "content_type": [
-            "contenttypes",
-            "contenttype"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_contenttype",
-        "name": "Can change content type",
-        "content_type": [
-            "contenttypes",
-            "contenttype"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_contenttype",
-        "name": "Can delete content type",
-        "content_type": [
-            "contenttypes",
-            "contenttype"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_session",
-        "name": "Can add session",
-        "content_type": [
-            "sessions",
-            "session"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_session",
-        "name": "Can change session",
-        "content_type": [
-            "sessions",
-            "session"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_session",
-        "name": "Can delete session",
-        "content_type": [
-            "sessions",
-            "session"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_organization",
-        "name": "Can add organization",
-        "content_type": [
-            "kombucha_manager",
-            "organization"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_organization",
-        "name": "Can change organization",
-        "content_type": [
-            "kombucha_manager",
-            "organization"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_organization",
-        "name": "Can delete organization",
-        "content_type": [
-            "kombucha_manager",
-            "organization"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_userprofile",
-        "name": "Can add user profile",
-        "content_type": [
-            "kombucha_manager",
-            "userprofile"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_userprofile",
-        "name": "Can change user profile",
-        "content_type": [
-            "kombucha_manager",
-            "userprofile"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_userprofile",
-        "name": "Can delete user profile",
-        "content_type": [
-            "kombucha_manager",
-            "userprofile"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_vessel",
-        "name": "Can add vessel",
-        "content_type": [
-            "kombucha_manager",
-            "vessel"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_vessel",
-        "name": "Can change vessel",
-        "content_type": [
-            "kombucha_manager",
-            "vessel"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_vessel",
-        "name": "Can delete vessel",
-        "content_type": [
-            "kombucha_manager",
-            "vessel"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_source",
-        "name": "Can add source",
-        "content_type": [
-            "kombucha_manager",
-            "source"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_source",
-        "name": "Can change source",
-        "content_type": [
-            "kombucha_manager",
-            "source"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_source",
-        "name": "Can delete source",
-        "content_type": [
-            "kombucha_manager",
-            "source"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_teatype",
-        "name": "Can add tea type",
-        "content_type": [
-            "kombucha_manager",
-            "teatype"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_teatype",
-        "name": "Can change tea type",
-        "content_type": [
-            "kombucha_manager",
-            "teatype"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_teatype",
-        "name": "Can delete tea type",
-        "content_type": [
-            "kombucha_manager",
-            "teatype"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_tea",
-        "name": "Can add tea",
-        "content_type": [
-            "kombucha_manager",
-            "tea"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_tea",
-        "name": "Can change tea",
-        "content_type": [
-            "kombucha_manager",
-            "tea"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_tea",
-        "name": "Can delete tea",
-        "content_type": [
-            "kombucha_manager",
-            "tea"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_batch",
-        "name": "Can add batch",
-        "content_type": [
-            "kombucha_manager",
-            "batch"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_batch",
-        "name": "Can change batch",
-        "content_type": [
-            "kombucha_manager",
-            "batch"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_batch",
-        "name": "Can delete batch",
-        "content_type": [
-            "kombucha_manager",
-            "batch"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_flavor",
-        "name": "Can add flavor",
-        "content_type": [
-            "kombucha_manager",
-            "flavor"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_flavor",
-        "name": "Can change flavor",
-        "content_type": [
-            "kombucha_manager",
-            "flavor"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_flavor",
-        "name": "Can delete flavor",
-        "content_type": [
-            "kombucha_manager",
-            "flavor"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_bottle",
-        "name": "Can add bottle",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_bottle",
-        "name": "Can change bottle",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_bottle",
-        "name": "Can delete bottle",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_bottlesize",
-        "name": "Can add bottle size",
-        "content_type": [
-            "kombucha_manager",
-            "bottlesize"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_bottlesize",
-        "name": "Can change bottle size",
-        "content_type": [
-            "kombucha_manager",
-            "bottlesize"
-        ]
-    }
-},
-{
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_bottlesize",
-        "name": "Can delete bottle size",
-        "content_type": [
-            "kombucha_manager",
-            "bottlesize"
-        ]
-    }
-},
-{
-    "model": "auth.user",
-    "fields": {
-        "groups": [],
-        "last_name": "",
-        "is_staff": true,
-        "is_active": true,
-        "email": "",
-        "first_name": "",
-        "last_login": "2015-05-20T01:55:08.552Z",
-        "date_joined": "2015-04-30T22:02:41.681Z",
-        "is_superuser": true,
-        "username": "admin",
-        "password": "pbkdf2_sha256$20000$pBkIm32cPwRq$MbH0eBDBbibA9DMXSMZbiKKMrxMwjc8av5zqk/XL31M=",
-        "user_permissions": []
-    }
-},
-{
-    "model": "auth.user",
-    "fields": {
-        "groups": [],
-        "last_name": "",
-        "is_staff": false,
-        "is_active": true,
-        "email": "",
-        "first_name": "",
-        "last_login": null,
-        "date_joined": "2015-04-30T22:03:46.523Z",
-        "is_superuser": false,
-        "username": "testuser",
-        "password": "pbkdf2_sha256$20000$FAw5qOUQvLgw$5gB+IwBVwWDveF3ZgR/Mf/1XK/hmPMkH1M3httNpfpU=",
-        "user_permissions": []
-    }
-},
-{
-    "model": "auth.user",
-    "fields": {
-        "groups": [],
-        "last_name": "",
-        "is_staff": false,
-        "is_active": true,
-        "email": "",
-        "first_name": "",
-        "last_login": "2015-04-30T22:11:54.115Z",
-        "date_joined": "2015-04-30T22:11:28.939Z",
-        "is_superuser": false,
-        "username": "dbryant",
-        "password": "pbkdf2_sha256$20000$l78nsw1gPj4p$FaRMM7wbG4ReXu/eZkgKDEJGZA1UBYYO+oOZPEqyF6k=",
-        "user_permissions": []
-    }
-},
-{
-    "model": "auth.user",
-    "fields": {
-        "groups": [],
-        "last_name": "",
-        "is_staff": false,
-        "is_active": true,
-        "email": "",
-        "first_name": "",
-        "last_login": null,
-        "date_joined": "2015-04-30T22:11:43.290Z",
-        "is_superuser": false,
-        "username": "beserres",
-        "password": "pbkdf2_sha256$20000$3MLLx0mwXdlN$iDulDC6rciEMCXILenVG+9ruei1N+fEVMA1LOVUhyC8=",
-        "user_permissions": []
-    }
-},
-{
-    "pk": 1,
-    "model": "kombucha_manager.userprofile",
-    "fields": {
-        "organization": 2
-    }
-},
-{
-    "pk": 2,
-    "model": "kombucha_manager.userprofile",
-    "fields": {
-        "organization": 1
-    }
-},
-{
-    "pk": 3,
-    "model": "kombucha_manager.userprofile",
-    "fields": {
-        "organization": 2
-    }
-},
-{
-    "pk": 4,
-    "model": "kombucha_manager.userprofile",
-    "fields": {
-        "organization": 2
-    }
-},
-{
-    "pk": 1,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "1",
-        "content_type": [
-            "kombucha_manager",
-            "organization"
-        ],
-        "object_repr": "test org",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:03:44.334Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 2,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "2",
-        "content_type": [
-            "auth",
-            "user"
-        ],
-        "object_repr": "testuser",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:03:46.585Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 3,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "2",
-        "content_type": [
-            "kombucha_manager",
-            "organization"
-        ],
-        "object_repr": "Ben's Kombucha",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:07:53.996Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 4,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "1",
-        "content_type": [
-            "kombucha_manager",
-            "vessel"
-        ],
-        "object_repr": "Clear",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:08:00.735Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 5,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "2",
-        "content_type": [
-            "kombucha_manager",
-            "vessel"
-        ],
-        "object_repr": "Blue",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:08:10.271Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 6,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "3",
-        "content_type": [
-            "kombucha_manager",
-            "vessel"
-        ],
-        "object_repr": "Green",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:08:24.453Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 7,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "1",
-        "content_type": [
-            "kombucha_manager",
-            "source"
-        ],
-        "object_repr": "Kombucha Brooklyn",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:08:39.954Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 8,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "2",
-        "content_type": [
-            "kombucha_manager",
-            "source"
-        ],
-        "object_repr": "Dupont Market",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:09:09.220Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 9,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "1",
-        "content_type": [
-            "kombucha_manager",
-            "teatype"
-        ],
-        "object_repr": "Green",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:09:43.823Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 10,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "2",
-        "content_type": [
-            "kombucha_manager",
-            "teatype"
-        ],
-        "object_repr": "Black",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:09:52.158Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 11,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "3",
-        "content_type": [
-            "kombucha_manager",
-            "teatype"
-        ],
-        "object_repr": "White",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:09:55.546Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 12,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "1",
-        "content_type": [
-            "kombucha_manager",
-            "tea"
-        ],
-        "object_repr": "Kombucha Brooklyn House Green",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:10:13.535Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 13,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "2",
-        "content_type": [
-            "kombucha_manager",
-            "tea"
-        ],
-        "object_repr": "Kombucha Brooklyn House White",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:10:20.356Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 14,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "3",
-        "content_type": [
-            "kombucha_manager",
-            "tea"
-        ],
-        "object_repr": "Kombucha Brooklyn House Green, Black, White",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:10:27.664Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 15,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "1",
-        "content_type": [
-            "kombucha_manager",
-            "batch"
-        ],
-        "object_repr": "Batch #1 - 2015-04-22",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:11:06.231Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 16,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "3",
-        "content_type": [
-            "auth",
-            "user"
-        ],
-        "object_repr": "dbryant",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:11:29.025Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 17,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "4",
-        "content_type": [
-            "auth",
-            "user"
-        ],
-        "object_repr": "beserres",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-04-30T22:11:43.357Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 18,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "3",
-        "content_type": [
-            "kombucha_manager",
-            "source"
-        ],
-        "object_repr": "Yes! Organic Market",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-01T00:14:37.431Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 19,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "1",
-        "content_type": [
-            "kombucha_manager",
-            "flavor"
-        ],
-        "object_repr": "Mint",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-01T00:14:44.277Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 20,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "2",
-        "content_type": [
-            "kombucha_manager",
-            "flavor"
-        ],
-        "object_repr": "Blackberry",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-01T00:56:34.571Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 21,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "1",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #1 (Mint) - 2015-05-01",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-01T01:11:07.255Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 22,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "2",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #2 (Blackberry) - 2015-05-01",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-01T01:34:48.502Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 23,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "2",
-        "content_type": [
-            "kombucha_manager",
-            "batch"
-        ],
-        "object_repr": "Batch #2 - 2015-05-01",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-01T02:30:40.189Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 24,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "2",
-        "content_type": [
-            "kombucha_manager",
-            "batch"
-        ],
-        "object_repr": "Batch #2 - 2015-05-01",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 2,
-        "action_time": "2015-05-04T03:03:20.635Z",
-        "change_message": "Changed vessel."
-    }
-},
-{
-    "pk": 25,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "3",
-        "content_type": [
-            "kombucha_manager",
-            "flavor"
-        ],
-        "object_repr": "Blackberry (Frozen)",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-13T00:41:27.795Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 26,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "4",
-        "content_type": [
-            "kombucha_manager",
-            "flavor"
-        ],
-        "object_repr": "Ginger",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-13T00:41:36.743Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 27,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "5",
-        "content_type": [
-            "kombucha_manager",
-            "flavor"
-        ],
-        "object_repr": "Pear",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-13T00:41:48.931Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 28,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "3",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #3 (Mint, Blackberry (Frozen)) - 2015-05-12",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-13T00:42:14.224Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 29,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "4",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #4 (Ginger, Pear) - 2015-05-12",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-13T00:45:22.101Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 30,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "3",
-        "content_type": [
-            "kombucha_manager",
-            "batch"
-        ],
-        "object_repr": "Batch #3 - 2015-05-12",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-13T00:46:34.338Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 31,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "4",
-        "content_type": [
-            "kombucha_manager",
-            "batch"
-        ],
-        "object_repr": "Batch #4 - 2015-05-12",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-13T00:46:56.395Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 32,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "1",
-        "content_type": [
-            "kombucha_manager",
-            "bottlesize"
-        ],
-        "object_repr": "32 fl oz",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-13T01:32:21.177Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 33,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "2",
-        "content_type": [
-            "kombucha_manager",
-            "bottlesize"
-        ],
-        "object_repr": "16 fl oz",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-13T01:32:58.445Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 34,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "2",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #2 16 fl oz (Blackberry) - 2015-05-01",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 2,
-        "action_time": "2015-05-13T01:33:10.102Z",
-        "change_message": "Changed size."
-    }
-},
-{
-    "pk": 35,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "5",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #5 32 fl oz (Ginger) - 2015-05-18",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-19T01:44:05.069Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 36,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "6",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #6 16 fl oz (Mint) - 2015-05-18",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-19T01:44:35.797Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 37,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "4",
-        "content_type": [
-            "kombucha_manager",
-            "source"
-        ],
-        "object_repr": "Bloomingdale Market",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-19T01:45:09.156Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 38,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "6",
-        "content_type": [
-            "kombucha_manager",
-            "flavor"
-        ],
-        "object_repr": "Strawberry",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-19T01:45:12.453Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 39,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "7",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #7 32 fl oz (Strawberry) - 2015-05-18",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-19T01:45:19.510Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 40,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "8",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #8 32 fl oz (Ginger) - 2015-05-18",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-19T01:45:37.553Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 41,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "9",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #9 32 fl oz (Blackberry (Frozen)) - 2015-05-18",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-19T01:45:48.589Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 42,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "3",
-        "content_type": [
-            "kombucha_manager",
-            "bottlesize"
-        ],
-        "object_repr": "14 fl oz",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-19T01:46:06.917Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 43,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "7",
-        "content_type": [
-            "kombucha_manager",
-            "flavor"
-        ],
-        "object_repr": "Raspberry",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-19T01:46:24.297Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 44,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "10",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #10 14 fl oz (Raspberry) - 2015-05-18",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-19T01:46:27.999Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 45,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "1",
-        "content_type": [
-            "kombucha_manager",
-            "userprofile"
-        ],
-        "object_repr": "admin",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-22T19:49:58.667Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 46,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "1",
-        "content_type": [
-            "kombucha_manager",
-            "flavor"
-        ],
-        "object_repr": "Spearmint",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 2,
-        "action_time": "2015-05-25T20:06:19.506Z",
-        "change_message": "Changed name."
-    }
-},
-{
-    "pk": 47,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "8",
-        "content_type": [
-            "kombucha_manager",
-            "flavor"
-        ],
-        "object_repr": "Peppermint",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-25T20:06:34.826Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 48,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "11",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #11 32 fl oz (Blackberry (Frozen), Peppermint) - 2015-05-25",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-25T20:07:50.776Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 49,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "11",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #11 32 fl oz (Blackberry (Frozen), Peppermint) - 2015-05-25",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 2,
-        "action_time": "2015-05-25T20:09:14.980Z",
-        "change_message": "No fields changed."
-    }
-},
-{
-    "pk": 50,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "12",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #12 32 fl oz (Ginger) - 2015-05-25",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-25T20:09:33.584Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 51,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "4",
-        "content_type": [
-            "kombucha_manager",
-            "bottlesize"
-        ],
-        "object_repr": "24 fl oz",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-25T20:18:54.019Z",
-        "change_message": ""
-    }
-},
-{
-    "pk": 52,
-    "model": "admin.logentry",
-    "fields": {
-        "object_id": "13",
-        "content_type": [
-            "kombucha_manager",
-            "bottle"
-        ],
-        "object_repr": "Bottle #13 24 fl oz (Spearmint) - 2015-05-25",
-        "user": [
-            "admin"
-        ],
-        "action_flag": 1,
-        "action_time": "2015-05-25T20:18:56.295Z",
-        "change_message": ""
-    }
+  "fields": {
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "is_active": true,
+    "is_superuser": true,
+    "is_staff": true,
+    "last_login": "2015-08-08T18:17:04.560Z",
+    "groups": [],
+    "user_permissions": [],
+    "password": "pbkdf2_sha256$20000$pBkIm32cPwRq$MbH0eBDBbibA9DMXSMZbiKKMrxMwjc8av5zqk/XL31M=",
+    "email": "",
+    "date_joined": "2015-04-30T22:02:41.681Z"
+  },
+  "model": "auth.user",
+  "pk": 1
+},
+{
+  "fields": {
+    "username": "testuser",
+    "first_name": "",
+    "last_name": "",
+    "is_active": true,
+    "is_superuser": false,
+    "is_staff": false,
+    "last_login": null,
+    "groups": [],
+    "user_permissions": [],
+    "password": "pbkdf2_sha256$20000$FAw5qOUQvLgw$5gB+IwBVwWDveF3ZgR/Mf/1XK/hmPMkH1M3httNpfpU=",
+    "email": "",
+    "date_joined": "2015-04-30T22:03:46.523Z"
+  },
+  "model": "auth.user",
+  "pk": 2
+},
+{
+  "fields": {
+    "name": "test org"
+  },
+  "model": "kombucha_manager.organization",
+  "pk": 1
+},
+{
+  "fields": {
+    "name": "Ben's Kombucha"
+  },
+  "model": "kombucha_manager.organization",
+  "pk": 2
+},
+{
+  "fields": {
+    "organization": 2
+  },
+  "model": "kombucha_manager.userprofile",
+  "pk": 1
+},
+{
+  "fields": {
+    "organization": 1
+  },
+  "model": "kombucha_manager.userprofile",
+  "pk": 2
+},
+{
+  "fields": {
+    "organization": 2,
+    "name": "Clear"
+  },
+  "model": "kombucha_manager.vessel",
+  "pk": 1
+},
+{
+  "fields": {
+    "organization": 2,
+    "name": "Blue"
+  },
+  "model": "kombucha_manager.vessel",
+  "pk": 2
+},
+{
+  "fields": {
+    "organization": 2,
+    "name": "Green"
+  },
+  "model": "kombucha_manager.vessel",
+  "pk": 3
+},
+{
+  "fields": {
+    "name": "Kombucha Brooklyn",
+    "source_url": "http://www.kombuchabrooklyn.com/"
+  },
+  "model": "kombucha_manager.source",
+  "pk": 1
+},
+{
+  "fields": {
+    "name": "Dupont Market",
+    "source_url": ""
+  },
+  "model": "kombucha_manager.source",
+  "pk": 2
+},
+{
+  "fields": {
+    "name": "Yes! Organic Market",
+    "source_url": "http://www.yesorganicmarket.com/"
+  },
+  "model": "kombucha_manager.source",
+  "pk": 3
+},
+{
+  "fields": {
+    "name": "Bloomingdale Market",
+    "source_url": ""
+  },
+  "model": "kombucha_manager.source",
+  "pk": 4
+},
+{
+  "fields": {
+    "name": "Green"
+  },
+  "model": "kombucha_manager.teatype",
+  "pk": 1
+},
+{
+  "fields": {
+    "name": "Black"
+  },
+  "model": "kombucha_manager.teatype",
+  "pk": 2
+},
+{
+  "fields": {
+    "name": "White"
+  },
+  "model": "kombucha_manager.teatype",
+  "pk": 3
+},
+{
+  "fields": {
+    "sources": [
+      1
+    ],
+    "name": "House",
+    "comments": "",
+    "tea_types": [
+      1
+    ]
+  },
+  "model": "kombucha_manager.tea",
+  "pk": 1
+},
+{
+  "fields": {
+    "sources": [
+      1
+    ],
+    "name": "House",
+    "comments": "",
+    "tea_types": [
+      3
+    ]
+  },
+  "model": "kombucha_manager.tea",
+  "pk": 2
+},
+{
+  "fields": {
+    "sources": [
+      1
+    ],
+    "name": "House",
+    "comments": "",
+    "tea_types": [
+      1,
+      2,
+      3
+    ]
+  },
+  "model": "kombucha_manager.tea",
+  "pk": 3
+},
+{
+  "fields": {
+    "brew_volume": "1.00",
+    "sugar_volume": "1.00",
+    "tea_volume": "5.0",
+    "tea": [
+      3
+    ],
+    "comments": "",
+    "discarded": false,
+    "brew_date": "2015-04-22",
+    "vessel": 1,
+    "scoby_count": 2
+  },
+  "model": "kombucha_manager.batch",
+  "pk": 1
+},
+{
+  "fields": {
+    "brew_volume": "1.00",
+    "sugar_volume": "1.00",
+    "tea_volume": "12.0",
+    "tea": [
+      1
+    ],
+    "comments": "",
+    "discarded": false,
+    "brew_date": "2015-05-01",
+    "vessel": 3,
+    "scoby_count": 1
+  },
+  "model": "kombucha_manager.batch",
+  "pk": 2
+},
+{
+  "fields": {
+    "brew_volume": "1.00",
+    "sugar_volume": "1.00",
+    "tea_volume": "12.0",
+    "tea": [
+      1
+    ],
+    "comments": "",
+    "discarded": false,
+    "brew_date": "2015-05-12",
+    "vessel": 3,
+    "scoby_count": 1
+  },
+  "model": "kombucha_manager.batch",
+  "pk": 3
+},
+{
+  "fields": {
+    "brew_volume": "1.00",
+    "sugar_volume": "1.00",
+    "tea_volume": "12.0",
+    "tea": [
+      2
+    ],
+    "comments": "",
+    "discarded": false,
+    "brew_date": "2015-05-12",
+    "vessel": 2,
+    "scoby_count": 1
+  },
+  "model": "kombucha_manager.batch",
+  "pk": 4
+},
+{
+  "fields": {
+    "source": [
+      3
+    ],
+    "name": "Spearmint",
+    "comments": ""
+  },
+  "model": "kombucha_manager.flavor",
+  "pk": 1
+},
+{
+  "fields": {
+    "source": [
+      2
+    ],
+    "name": "Blackberry",
+    "comments": ""
+  },
+  "model": "kombucha_manager.flavor",
+  "pk": 2
+},
+{
+  "fields": {
+    "source": [
+      2
+    ],
+    "name": "Blackberry (Frozen)",
+    "comments": ""
+  },
+  "model": "kombucha_manager.flavor",
+  "pk": 3
+},
+{
+  "fields": {
+    "source": [
+      3
+    ],
+    "name": "Ginger",
+    "comments": ""
+  },
+  "model": "kombucha_manager.flavor",
+  "pk": 4
+},
+{
+  "fields": {
+    "source": [
+      3
+    ],
+    "name": "Pear",
+    "comments": ""
+  },
+  "model": "kombucha_manager.flavor",
+  "pk": 5
+},
+{
+  "fields": {
+    "source": [
+      4
+    ],
+    "name": "Strawberry",
+    "comments": ""
+  },
+  "model": "kombucha_manager.flavor",
+  "pk": 6
+},
+{
+  "fields": {
+    "source": [
+      1
+    ],
+    "name": "Raspberry",
+    "comments": ""
+  },
+  "model": "kombucha_manager.flavor",
+  "pk": 7
+},
+{
+  "fields": {
+    "source": [
+      2
+    ],
+    "name": "Peppermint",
+    "comments": ""
+  },
+  "model": "kombucha_manager.flavor",
+  "pk": 8
+},
+{
+  "fields": {
+    "size": 32
+  },
+  "model": "kombucha_manager.bottlesize",
+  "pk": 1
+},
+{
+  "fields": {
+    "size": 16
+  },
+  "model": "kombucha_manager.bottlesize",
+  "pk": 2
+},
+{
+  "fields": {
+    "size": 14
+  },
+  "model": "kombucha_manager.bottlesize",
+  "pk": 3
+},
+{
+  "fields": {
+    "size": 24
+  },
+  "model": "kombucha_manager.bottlesize",
+  "pk": 4
+},
+{
+  "fields": {
+    "bottle_date": "2015-05-01",
+    "flavors": [
+      1
+    ],
+    "batch": 1,
+    "comments": "",
+    "size": 1
+  },
+  "model": "kombucha_manager.bottle",
+  "pk": 1
+},
+{
+  "fields": {
+    "bottle_date": "2015-05-01",
+    "flavors": [
+      2
+    ],
+    "batch": 1,
+    "comments": "",
+    "size": 2
+  },
+  "model": "kombucha_manager.bottle",
+  "pk": 2
+},
+{
+  "fields": {
+    "bottle_date": "2015-05-12",
+    "flavors": [
+      1,
+      3
+    ],
+    "batch": 2,
+    "comments": "",
+    "size": 1
+  },
+  "model": "kombucha_manager.bottle",
+  "pk": 3
+},
+{
+  "fields": {
+    "bottle_date": "2015-05-12",
+    "flavors": [
+      4,
+      5
+    ],
+    "batch": 2,
+    "comments": "",
+    "size": 1
+  },
+  "model": "kombucha_manager.bottle",
+  "pk": 4
+},
+{
+  "fields": {
+    "bottle_date": "2015-05-18",
+    "flavors": [
+      4
+    ],
+    "batch": 3,
+    "comments": "",
+    "size": 1
+  },
+  "model": "kombucha_manager.bottle",
+  "pk": 5
+},
+{
+  "fields": {
+    "bottle_date": "2015-05-18",
+    "flavors": [
+      1
+    ],
+    "batch": 3,
+    "comments": "",
+    "size": 2
+  },
+  "model": "kombucha_manager.bottle",
+  "pk": 6
+},
+{
+  "fields": {
+    "bottle_date": "2015-05-18",
+    "flavors": [
+      6
+    ],
+    "batch": 3,
+    "comments": "",
+    "size": 1
+  },
+  "model": "kombucha_manager.bottle",
+  "pk": 7
+},
+{
+  "fields": {
+    "bottle_date": "2015-05-18",
+    "flavors": [
+      4
+    ],
+    "batch": 4,
+    "comments": "",
+    "size": 1
+  },
+  "model": "kombucha_manager.bottle",
+  "pk": 8
+},
+{
+  "fields": {
+    "bottle_date": "2015-05-18",
+    "flavors": [
+      3
+    ],
+    "batch": 4,
+    "comments": "",
+    "size": 1
+  },
+  "model": "kombucha_manager.bottle",
+  "pk": 9
+},
+{
+  "fields": {
+    "bottle_date": "2015-05-18",
+    "flavors": [
+      7
+    ],
+    "batch": 4,
+    "comments": "",
+    "size": 3
+  },
+  "model": "kombucha_manager.bottle",
+  "pk": 10
+},
+{
+  "fields": {
+    "bottle_date": "2015-05-25",
+    "flavors": [
+      3,
+      8
+    ],
+    "batch": 4,
+    "comments": "",
+    "size": 1
+  },
+  "model": "kombucha_manager.bottle",
+  "pk": 11
+},
+{
+  "fields": {
+    "bottle_date": "2015-05-25",
+    "flavors": [
+      4
+    ],
+    "batch": 4,
+    "comments": "",
+    "size": 1
+  },
+  "model": "kombucha_manager.bottle",
+  "pk": 12
+},
+{
+  "fields": {
+    "bottle_date": "2015-05-25",
+    "flavors": [
+      1
+    ],
+    "batch": 4,
+    "comments": "",
+    "size": 4
+  },
+  "model": "kombucha_manager.bottle",
+  "pk": 13
 }
 ]
