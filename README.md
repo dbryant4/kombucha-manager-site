@@ -22,7 +22,7 @@ docker-compose up
 You can confirm the app is running and accepting connections by running the following command. You can also visit the URL below in your browser. The dev login account is admin/admin. Replace `default` in the command below with the name of the docker-machine you created. You can get a list of them by running `docker-machine ls`.
 
 ```
-curl $(docker-machine ip default):8000
+curl $(docker-machine ip default):5000
 ```
 
 ### The Vagrant Way
