@@ -1,7 +1,7 @@
 db:
   image: postgres
 web:
-  image: kombucha-manager:test
+  build: .
   environment:
     DJANGO_DEBUG: 'true'
     DATABASE_URL: 'postgres://postgres:postgres@db/postgres'

@@ -1,0 +1,15 @@
+# circle.yml
+machine:
+  services:
+    - docker
+
+dependencies:
+  pre:
+    - docker-compose --file docker-compose-test.yml up --force-recreate -d db
+
+test:
+  docker:
+    - docker-compose --file docker-compose-test.yml up --force-recreate web
+    - curl --retry 10 --retry-delay 5 -v http://localhost:5000
+    - docker-compose --file docker-compose-test.yml stop db
+    - docker-compose --file docker-compose-test.yml rm --force -v
