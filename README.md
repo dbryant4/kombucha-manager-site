@@ -1,4 +1,6 @@
 # Kombucha Manager
+[![Circle CI](https://circleci.com/gh/dbryant4/kombucha-manager-site/tree/master.svg?style=svg)](https://circleci.com/gh/dbryant4/kombucha-manager-site/tree/master)
+
 Currently, this repo is a Django site with an app which will help keep track of Kombucha brews and bottling. The app will eventually be  broken out of this repo and placed in to its own repo.
 
 This repo is currently a Django site which is designed to be pushed to Heroku. This is why the files `runtime.txt`, `Procfile`, and `.buildpacks` exist. This README will not cover how to deploy to Heroku but rather will focus on running the Kombucha Manager app locally.
