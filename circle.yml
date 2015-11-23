@@ -8,7 +8,7 @@ machine:
 
 dependencies:
   pre:
-    - docker run -d postgres
+    - docker run -d --name db postgres
     - docker build -t $DOCKERHUB_USER/kombucha-manager:$CIRCLE_SHA1 .
 
 test:
@@ -22,4 +22,5 @@ deployment:
     branch: master
     commands:
       - docker login -e $DOCKERHUB_EMAIL -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+      - docker push $DOCKERHUB_USER/kombucha-manager:$CIRCLE_SHA1
       - docker push $DOCKERHUB_USER/kombucha-manager
