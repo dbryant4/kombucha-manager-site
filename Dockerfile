@@ -17,3 +17,5 @@ RUN python manage.py compress --force
 RUN python manage.py collectstatic --no-color --noinput
 
 CMD ["honcho", "start"]
+
+EXPOSE 5000
