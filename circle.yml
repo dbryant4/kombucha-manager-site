@@ -21,6 +21,7 @@ deployment:
   hub:
     branch: master
     commands:
+      - docker tag $DOCKERHUB_USER/kombucha-manager:$CIRCLE_SHA1 $DOCKERHUB_USER/kombucha-manager:latest
       - docker login -e $DOCKERHUB_EMAIL -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
       - docker push $DOCKERHUB_USER/kombucha-manager:$CIRCLE_SHA1
-      - docker push $DOCKERHUB_USER/kombucha-manager
+      - docker push $DOCKERHUB_USER/kombucha-manager:latest
