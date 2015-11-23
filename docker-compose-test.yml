@@ -1,0 +1,10 @@
+db:
+  image: postgres
+web:
+  image: kombucha-manager:test
+  environment:
+    DJANGO_DEBUG: 'true'
+    DATABASE_URL: 'postgres://postgres:postgres@db/postgres'
+  command: 'python manage.py test'
+  links:
+    - db
