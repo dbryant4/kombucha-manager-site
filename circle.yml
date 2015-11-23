@@ -1,10 +1,9 @@
 # circle.yml
 machine:
   python:
-    version: 2.7
-    version: 3.2
-    version: 3.4.0
-    version: 3.5.0
+    version:
+      - 2.7
+      - 3.2
   services:
     - docker
     - postgresql
