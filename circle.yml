@@ -25,3 +25,7 @@ deployment:
       - docker login -e $DOCKERHUB_EMAIL -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
       - docker push $DOCKERHUB_USER/kombucha-manager:$CIRCLE_SHA1
       - docker push $DOCKERHUB_USER/kombucha-manager:latest
+  production:
+    branch: master
+    heroku:
+      appname: kombucha-manager
