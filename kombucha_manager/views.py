@@ -95,7 +95,7 @@ class BatchViewSet(viewsets.ModelViewSet):
         batch = Batch.objects.all().filter(pk=pk).first()
         batch.discarded = True
         batch.save()
-        return Response({'result': 0, 'message':'Batch %s discarded' % batch.id })
+        return Response({'result': 0, 'message':'Batch {0!s} discarded'.format(batch.id) })
 
     @detail_route(methods=['get'])
     def bottles(self, request, pk=None):
