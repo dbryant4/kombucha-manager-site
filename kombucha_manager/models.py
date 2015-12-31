@@ -21,7 +21,7 @@ class Vessel(models.Model):
     name = models.CharField(max_length=200)
 
     def __unicode__(self):
-        return "%s - %s" % (self.organization, self.name)
+        return "{0!s} - {1!s}".format(self.organization, self.name)
 
 class Source(models.Model):
     name = models.CharField(max_length=200)
@@ -45,7 +45,7 @@ class Tea(models.Model):
     def __unicode__(self):
         sources = (source.name for source in self.sources.all())
         tea_types = (tea_type.name for tea_type in self.tea_types.all())
-        return "%s %s %s" % (", ".join(sources),
+        return "{0!s} {1!s} {2!s}".format(", ".join(sources),
                             self.name,
                             ", ".join(tea_types))
 
@@ -64,7 +64,7 @@ class Batch(models.Model):
         verbose_name_plural = "batches"
 
     def __unicode__(self):
-        return "Batch #%s (%s) - %s" % (self.id, self.tea.first(), self.brew_date)
+        return "Batch #{0!s} ({1!s}) - {2!s}".format(self.id, self.tea.first(), self.brew_date)
 
 class Flavor(models.Model):
     name = models.CharField(max_length=200)
@@ -78,7 +78,7 @@ class BottleSize(models.Model):
     size = models.IntegerField(default=1)
 
     def __unicode__(self):
-        return "%s fl oz" % self.size
+        return "{0!s} fl oz".format(self.size)
 
 class Bottle(models.Model):
     batch = models.ForeignKey(Batch, related_name='bottles')
@@ -89,5 +89,5 @@ class Bottle(models.Model):
 
     def __unicode__(self):
         flavors = (flavor.name for flavor in self.flavors.all())
-        return "Bottle #%s %s fl oz (%s) - %s" % (self.id, self.size.size, ", ".join(flavors), self.bottle_date)
+        return "Bottle #{0!s} {1!s} fl oz ({2!s}) - {3!s}".format(self.id, self.size.size, ", ".join(flavors), self.bottle_date)
 
