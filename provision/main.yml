@@ -10,10 +10,8 @@
     - name: copy nodjs repo GPG key
       copy: src=files/NODESOURCE-GPG-SIGNING-KEY-EL dest=/etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL
 
-    - yum: "name={{ item }} state=present"
-      async: 1000
-      poll: 0
-      register: yum_sleeper
+    - name: install dependencies
+      yum: "name={{ item }} state=present"
       with_items:
         - git
         - python-devel
@@ -40,19 +38,10 @@
     - name: install requirements
       pip: "requirements=/vagrant/requirements.txt"
       args:
-        extra_args: --find-links=/vagrant/provision/files/.wheelhouse 
-
-    - name: wait for yum install to finish
-      async_status: jid={{ yum_sleeper.ansible_job_id }}
-      register: job_result
-      until: job_result.finished is defined and job_result.finished
-      retries: 30
+        extra_args: --find-links=/vagrant/provision/files/.wheelhouse
 
     - name: install bower
       npm: name=bower global=yes
-      async: 1000
-      poll: 0
-      register: bower_sleeper
 
     - command: "/bin/postgresql-setup initdb creates=/var/lib/pgsql/data/pg_hba.conf"
       ignore_errors: true
@@ -65,12 +54,6 @@
 
     - service: name=postgresql state=started enabled=true
     - service: name=memcached state=started enabled=true
-
-    - name: wait for bower install to finish
-      async_status: jid={{ bower_sleeper.ansible_job_id }}
-      register: job_result
-      until: job_result.finished is defined and job_result.finished
-      retries: 30
 
 - hosts: all
   sudo: yes

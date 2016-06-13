@@ -5,3 +5,5 @@ vagrant_project
 staticfiles
 .DS_Store
 bower_components
+test-results
+provision/*.retry
