@@ -14,27 +14,10 @@
 			.success(function(response) {
 
 	    		batches = response['results'];
-	    		batches.forEach(function(batch){
-	    			/* Get tea objects*/
-	    			var new_teas = [];
-	    			batch['tea'].forEach(function(tea){
-						$http.get(tea)
-	    				.success(function(response){					
-	    					new_teas.push(response);
-	    				});
-	    			});
-	    			batch['tea'] = new_teas;
-
-	    			/* Get vessel objects */
-	    			$http.get(batch['vessel'])
-	    			.success(function(response){	
-	    				batch['vessel'] = response;
-	    			})
-	    		});
 	    		$scope.batches = $scope.batches.concat(batches);
 	    		if (response.next != null){
 						$scope.loadBatches(response.next);
-				}
+					}
 	    	})
 	    	.error(function(response, status, headers, config) {
 	    		if (status == 403) {

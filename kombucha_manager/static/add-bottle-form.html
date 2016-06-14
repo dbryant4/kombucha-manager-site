@@ -12,20 +12,20 @@
 									</div>
 									<div class="modal-body">
 										<div class="form-group" ng-controller="BatchController as batchCtrl">
-											<label for="flavor">Batch:</label>
+											<label for="batch">Batch:</label>
 											<select class="form-control" ng-model="newBottle.batch" ng-options="item.url as item.id for item in batches|orderBy:'-id' track by item.url" required="true" >
 												<option value="">-- choose batch --</option>
 											</select>
 										</div>
 										<div class="form-group" ng-controller="SizeController as sizeCtrl">
 											<label for="size">Size:</label>
-											<select class="form-control" ng-model="newBottle.size" ng-options="item.url as item.size for item in sizes|orderBy:'size' track by item.url" required="true" >
+											<select class="form-control" ng-model="newBottle.size" ng-options="item.size for (key, item) in sizes|orderBy:'size' track by key" required="true" >
 												<option value="">-- choose size (oz) --</option>
 											</select>
 										</div>
 										<div class="form-group" ng-controller="FlavorController as flavorCtrl">
 											<label for="flavor">Flavor:</label>
-											<select class="form-control" ng-model="newBottle.flavor" ng-options="item.url as item.name for item in flavors|orderBy:'name' track by item.url" required="true" >
+											<select class="form-control" ng-model="newBottle.flavor" ng-options="item.displayName for (key, item) in flavors|orderBy:'displayName' track by key" required="true" >
 												<option value="">-- choose flavor --</option>
 											</select>
 										</div>
@@ -34,12 +34,12 @@
 											<input type="date" required="true" class="form-control" ng-model="newBottle.bottle_date"/>
 										</div>
 
-										
+
 								    <div class="modal-footer">
 								        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 								        <button type="submit" class="btn btn-primary">Add Bottle</button>
 								    </div>
 								</form>
-							</div> 
+							</div>
 						</div>
 					</div>

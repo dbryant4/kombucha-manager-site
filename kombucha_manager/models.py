@@ -88,6 +88,6 @@ class Bottle(models.Model):
     comments = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
-        flavors = (flavor.name for flavor in self.flavors.all())
+        # flavors = (flavor.name for flavor in self.flavors.all())
+        flavors = ['no']
         return "Bottle #{0!s} {1!s} fl oz ({2!s}) - {3!s}".format(self.id, self.size.size, ", ".join(flavors), self.bottle_date)
-

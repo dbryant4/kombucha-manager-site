@@ -1,6 +1,6 @@
 (function(){
 	var app = angular.module('bottles', []);
-	
+
 	app.directive('addBottleForm', function(){
 		return {
 			restrict: 'E',
@@ -14,13 +14,6 @@
 			$http.get(url)
 			.success(function(response) {
 				bottles = response.results;
-	    		
-	    		bottles.forEach(function(bottle){
-	    			$http.get(bottle.size)
-	    			.success(function(response){	
-	    				bottle.size = response;
-	    			})
-	    		});
 	    		$scope.bottles = $scope.bottles.concat(bottles);
 	    		if (response.next != null){
 					$scope.loadBottles(response.next);
@@ -51,6 +44,7 @@
 					batch: $scope.newBottle.batch,
 				},
 			}
+
 			$http(req)
 			.success(function(data, status, headers, config) {
 				$('#addBottleModal').modal('hide');
