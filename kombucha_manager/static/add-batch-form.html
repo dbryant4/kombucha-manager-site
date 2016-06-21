@@ -13,18 +13,14 @@
 									<div class="modal-body">
 										<div class="form-group" ng-controller="VesselController as vesselCtrl">
 											<label for="vessel">Vessel:</label>
-											<select class="form-control" ng-model="newBatch.vessel" ng-options="item.url as item.name for item in vessels|orderBy:'name' track by item.url" required="true" >
+											<select class="form-control" ng-model="newBatch.vessel" ng-options="item.name for (key, item) in vessels|orderBy:'name' track by item" required="true" >
 												<option value="">-- choose vessel --</option>
 											</select>
 										</div>
-										<div class="form-group">
-											<label>Tea:</label>
-											<select class="form-control" ng-controller="TeaController as teaCtrl" ng-model="newBatch.tea" id="tea" required="true">
-												<option value="{{ tea.url }}" ng-repeat="tea in teas">
-													{{ teaCtrl.joinNames(tea.sources) }}
-													{{ tea.name }}
-													{{ teaCtrl.joinNames(tea.types) }}
-												</option>
+										<div class="form-group" ng-controller="TeaController as teaCtrl">
+											<label for="tea">Tea:</label>
+											<select class="form-control" ng-model="newBatch.tea" ng-options="teaCtrl.joinNames(item.sources) + item.name + ' ' + teaCtrl.joinNames(item.types) for (key, item) in teas|orderBy:'name' track by item" required="true" >
+												<option value="">-- choose tea --</option>
 											</select>
 										</div>
 										<div class="form-group">
@@ -53,6 +49,6 @@
 								        <button type="submit" class="btn btn-primary">Add Batch</button>
 								    </div>
 								</form>
-							</div> 
+							</div>
 						</div>
 					</div>

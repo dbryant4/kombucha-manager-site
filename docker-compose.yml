@@ -1,14 +1,19 @@
-db:
-  image: postgres
-web:
-  build: .
-  environment:
-    DJANGO_DEBUG: 'true'
-    DATABASE_URL: 'postgres://postgres:postgres@db/postgres'
-  command: 'bash provision/files/docker-entrypoints.sh'
-  volumes:
-    - .:/kombucha-manager-site
-  ports:
-    - "5000:5000"
-  links:
-    - db
+version: '2'
+services:
+  db:
+    image: postgres
+  web:
+    build: .
+    depends_on:
+      - db
+    environment:
+      DJANGO_DEBUG: 'true'
+      DATABASE_URL: 'postgres://postgres:postgres@db/postgres'
+    command: 'bash provision/files/docker-entrypoints.sh'
+    working_dir: /kombucha-manager-site
+    volumes:
+      - .:/kombucha-manager-site
+    ports:
+      - "5000:5000"
+    links:
+      - db

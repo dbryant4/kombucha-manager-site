@@ -40,6 +40,7 @@ class VesselSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Vessel
         fields = ('id', 'url', 'name', 'batches')
+        extra_kwargs = {'id': {'read_only': False}}
 
 class SourceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -58,10 +59,32 @@ class TeaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Tea
         fields = ('id', 'url', 'name', 'comments', 'types', 'sources')
+        extra_kwargs = {'id': {'read_only': False}}
 
 class BatchSerializer(serializers.HyperlinkedModelSerializer):
-    tea = serializers.HyperlinkedRelatedField(queryset=Tea.objects.all(), many=True, view_name='tea-detail')
-    vessel = serializers.HyperlinkedRelatedField(queryset=Vessel.objects.all(), view_name='vessel-detail')
+    tea = TeaSerializer(many=True)
+    # tea = serializers.HyperlinkedIdentityField(many=True, view_name='track-list')
+    vessel = VesselSerializer()
+
+    def create(self, validated_data):
+        teas_data = validated_data.pop('tea')
+        vessel_data = validated_data.pop('vessel')
+
+        vessel = Vessel.objects.get(id=vessel_data['id'])
+        batch = Batch(
+            vessel = vessel,
+            tea_volume = validated_data['tea_volume'],
+            sugar_volume = validated_data['sugar_volume'],
+            brew_volume = validated_data['brew_volume'],
+            scoby_count = validated_data['scoby_count'],
+            brew_date=validated_data['brew_date']
+        )
+        batch.save()
+        for tea_data in teas_data:
+            tea = Tea.objects.get(id=tea_data['id'])
+            batch.tea.add(tea)
+
+        return batch
 
     class Meta:
         model = Batch
@@ -77,18 +100,45 @@ class BatchSerializer(serializers.HyperlinkedModelSerializer):
                   'vessel',
                   'discarded'
                  )
-    
+
 
 class FlavorSerializer(serializers.HyperlinkedModelSerializer):
+    source = SourceSerializer(many=True)
+
     class Meta:
         model = Flavor
+        fields = ('id', 'name', 'source', 'comments')
+        extra_kwargs = {'id': {'read_only': False}}
 
 class BottleSizeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BottleSize
+        fields = ('id', 'size')
+        extra_kwargs = {'id': {'read_only': False}}
 
 class BottleSerializer(serializers.HyperlinkedModelSerializer):
-    #size = BottleSizeSerializer()
+    size = BottleSizeSerializer()
+    flavors = FlavorSerializer(many=True)
+
+    def create(self, validated_data):
+        flavors_data = validated_data.pop('flavors')
+        size_data = validated_data.pop('size')
+
+        size = BottleSize.objects.get(id=size_data['id'])
+
+        bottle = Bottle(
+            size=size,
+            bottle_date=validated_data['bottle_date'],
+            comments="",
+            batch=validated_data['batch']
+        )
+        bottle.save()
+
+        for flavor_data in flavors_data:
+            flavor = Flavor.objects.get(id=flavor_data['id'])
+            flavor.bottles.add(bottle)
+
+        return bottle
 
     class Meta:
         model = Bottle

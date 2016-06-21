@@ -1,6 +1,6 @@
 (function(){
 	var app = angular.module('flavors', []);
-	
+
 	app.controller('FlavorController', ['$http', '$log', '$scope', function($http, $log, $scope){
 		this.loadFlavors = function(url){
 			url = url || "/api/v1/flavors/";
@@ -8,10 +8,8 @@
 			.success(function(response) {
 	    		flavors = response['results'];
 	    		flavors.forEach(function(flavor){
-	    			$http.get(flavor.source).success(function(data){
-	    				flavor.name = flavor.name + ' - ' + data.name
-	    			});
-	    		});
+    				flavor.displayName = flavor.name + ' - ' + flavor.source[0].name
+    			});
 	    		$scope.flavors = $scope.flavors.concat(flavors);
 	    		if (response.next != null){
 					$scope.loadFlavors(response.next);

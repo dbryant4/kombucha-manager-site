@@ -64,7 +64,7 @@ class Batch(models.Model):
         verbose_name_plural = "batches"
 
     def __unicode__(self):
-        return "Batch #{0!s} ({1!s}) - {2!s}".format(self.id, self.tea.first(), self.brew_date)
+        return "Batch #{0!s} ({1!s}) - {2!s}".format(self.id, None, self.brew_date)
 
 class Flavor(models.Model):
     name = models.CharField(max_length=200)
@@ -88,6 +88,6 @@ class Bottle(models.Model):
     comments = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
-        flavors = (flavor.name for flavor in self.flavors.all())
+        # flavors = (flavor.name for flavor in self.flavors.all())
+        flavors = ['no']
         return "Bottle #{0!s} {1!s} fl oz ({2!s}) - {3!s}".format(self.id, self.size.size, ", ".join(flavors), self.bottle_date)
-
