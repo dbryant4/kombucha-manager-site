@@ -44,7 +44,7 @@ class BatchesTestCase(APITestCase):
                           sugar_volume=1.0,
                           brew_volume=1.0,
                           scoby_count=1,
-                          brew_date=timezone.now(), 
+                          brew_date=timezone.now(),
                           comments=''
                         )
       self.batch.save()
@@ -67,6 +67,7 @@ class BatchesTestCase(APITestCase):
       """ Ensure we can add a batch using the API """
 
       url = reverse('batch-list')
+      batch_url = reverse('batch-detail', kwargs={'pk': self.batch.id})
 
       data = {
         'tea_volume': '12.0',
@@ -75,8 +76,12 @@ class BatchesTestCase(APITestCase):
         'scoby_count': 1,
         'brew_date': '2015-05-01',
         'comments': "",
-        'tea': [reverse('tea-detail', kwargs={'pk': self.tea.id})],
-        'vessel': reverse('vessel-detail', kwargs={'pk': self.vessel.id})
+        'tea': [],
+        'vessel': {
+            'id': self.vessel.id,
+            'name': self.vessel.name,
+            'batches': [batch_url]
+        }
       }
       response = self.client.post(url, data, format='json')
       self.assertEqual(response.status_code, status.HTTP_201_CREATED, msg=response)
@@ -107,6 +112,6 @@ class BatchesTestCase(APITestCase):
       url = reverse('batch-detail', kwargs={'pk': self.batch.id})
 
       response = self.client.get(url, format='json')
+      vessel_url = reverse('vessel-detail', kwargs={'pk': self.vessel.id})
       self.assertEqual(response.status_code, status.HTTP_200_OK, msg=response.status_code)
-      self.assertTrue(reverse('vessel-detail', kwargs={'pk': self.vessel.id}) in response.data['vessel'] , msg=response.content)
-
+      self.assertEqual(self.vessel.id, response.data['vessel']['id'], msg=response.content)

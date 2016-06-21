@@ -7,7 +7,7 @@ from django.utils import timezone
 
 from django.contrib.auth.models import User
 from ..models import *
-
+from ..serializers import *
 
 class BottlesTestCase(APITestCase):
     def setUp(self):
@@ -42,7 +42,7 @@ class BottlesTestCase(APITestCase):
                           sugar_volume=1.0,
                           brew_volume=1.0,
                           scoby_count=1,
-                          brew_date=timezone.now(), 
+                          brew_date=timezone.now(),
                           comments=''
                         )
       self.batch.save()
@@ -67,11 +67,23 @@ class BottlesTestCase(APITestCase):
       url = reverse('bottle-list')
 
       data = {
-      	'size': reverse('bottlesize-detail', kwargs={'pk': self.size.id}),
+      	'size': { 'id': self.size.id, 'size': self.size.size},
       	'bottle_date': '2015-05-01',
       	'comments': '',
       	'batch': reverse('batch-detail', kwargs={'pk': self.batch.id}),
-        'flavors': [reverse('flavor-detail', kwargs={'pk': self.flavor.id})]
+        'flavors': [
+            {
+                'id': self.flavor.id,
+                'name': self.flavor.name,
+                'source': [
+                    {
+                        'id': self.source.id,
+                        'name': self.source.name,
+                        'source_url': self.source.source_url
+                    }
+                ]
+            }
+        ]
       }
       response = self.client.post(url, data, format='json')
       self.assertEqual(response.status_code, status.HTTP_201_CREATED, msg=response)
@@ -102,6 +114,6 @@ class BottlesTestCase(APITestCase):
       url = reverse('bottle-detail', kwargs={'pk': self.bottle.id})
 
       response = self.client.get(url, format='json')
+      size_url = reverse('bottlesize-detail', kwargs={'pk': self.size.id})
       self.assertEqual(response.status_code, status.HTTP_200_OK, msg=response.status_code)
-      self.assertTrue(reverse('bottlesize-detail', kwargs={'pk': self.size.id}) in response.data['size'] , msg=response.content)
-
+      self.assertEqual(self.size.id, response.data['size']['id'], msg=response.content)

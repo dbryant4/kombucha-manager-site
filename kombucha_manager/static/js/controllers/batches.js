@@ -38,13 +38,13 @@
 			 	},
 			 	data: {
 					tea: [$scope.newBatch.tea],
-				    tea_volume: $scope.newBatch.tea_volume,
-				    sugar_volume: $scope.newBatch.sugar_volume,
-				    brew_volume: $scope.newBatch.brew_volume,
-				    scoby_count: $scope.newBatch.scoby_count,
-				    brew_date: $filter('date')($scope.newBatch.brew_date, 'yyyy-MM-dd'),
-				    comments: "",
-				    vessel: $scope.newBatch.vessel
+			    tea_volume: $scope.newBatch.tea_volume,
+			    sugar_volume: $scope.newBatch.sugar_volume,
+			    brew_volume: $scope.newBatch.brew_volume,
+			    scoby_count: $scope.newBatch.scoby_count,
+			    brew_date: $filter('date')($scope.newBatch.brew_date, 'yyyy-MM-dd'),
+			    comments: "",
+			    vessel: $scope.newBatch.vessel
 				},
 			}
 			$http(req).
