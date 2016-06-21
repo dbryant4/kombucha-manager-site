@@ -16,6 +16,7 @@ dependencies:
 #     - curl --retry 10 --retry-delay 5 -v http://localhost:5000
 
 deployment:
+  production:
     branch: master
     heroku:
       appname: kombucha-manager
