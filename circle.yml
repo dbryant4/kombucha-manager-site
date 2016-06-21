@@ -8,14 +8,15 @@ machine:
 
 dependencies:
   pre:
+    - sudo pip install docker-compose
     - docker run -d --name db postgres
     - docker build -t $DOCKERHUB_USER/kombucha-manager:$CIRCLE_SHA1 .
 
-test:
-  post:
-    - docker run -it -p 5000:5000 --link db:db -w /kombucha-manager-site -v $CIRCLE_TEST_REPORTS:/test-results -e "TEST_RESULTS_OUTPUT_DIR=/test-results" -e "DATABASE_URL=postgres://postgres:postgres@db/postgres" $DOCKERHUB_USER/kombucha-manager:$CIRCLE_SHA1 python manage.py test
-    - docker run -d -p 5000:5000 --link db:db -e "DATABASE_URL=postgres://postgres:postgres@db/postgres" $DOCKERHUB_USER/kombucha-manager:$CIRCLE_SHA1
-    - curl --retry 10 --retry-delay 5 -v http://localhost:5000
+# test:
+#   post:
+#     - docker run -it -p 5000:5000 --link db:db -w /kombucha-manager-site -v $CIRCLE_TEST_REPORTS:/test-results -e "TEST_RESULTS_OUTPUT_DIR=/test-results" -e "DATABASE_URL=postgres://postgres:postgres@db/postgres" $DOCKERHUB_USER/kombucha-manager:$CIRCLE_SHA1 python manage.py test
+#     - docker run -d -p 5000:5000 --link db:db -e "DATABASE_URL=postgres://postgres:postgres@db/postgres" $DOCKERHUB_USER/kombucha-manager:$CIRCLE_SHA1
+#     - curl --retry 10 --retry-delay 5 -v http://localhost:5000
 
 deployment:
   hub:
